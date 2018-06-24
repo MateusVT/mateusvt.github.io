@@ -124,7 +124,7 @@ class GameState extends BaseState {
         this.obstaclesHeart = this.game.add.group()
         // this.map.createFromObjects('Object Layer DamageSaw', 215,'damage_saw', 0, true, true, this.obstaclesSaw, Saw)
         // this.map.createFromObjects('Object Layer Hearts', ,'Coin', 0, true, true, this.obstaclesHeart, Heart)
-        this.map.createFromObjects('Object Layer Hearts', 15, 'heart', 0, true, true, this.obstaclesHeart, Heart)
+        this.map.createFromObjects('Object Layer Hearts', 111, 'heart', 0, true, true, this.obstaclesHeart, Heart)
 
         this.iniciarHearts()
 
