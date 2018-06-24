@@ -27,7 +27,7 @@ class BootState extends Phaser.State {
         this.game.load.tilemap('level1 map', 'assets/Mapas/Level 1/Level 2.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.image('flying plataform', 'assets/Player/flying plataform.png', 132, 65)
         // this.game.load.spritesheet('heart', 'assets/Player/heart.png', 25, 25)
-        this.game.load.spritesheet('heart', 'assets/Mapas/Level 1/heart.png',50,50)
+        this.game.load.spritesheet('heart', 'assets/Mapas/Level 1/heart.png', 50, 50)
         this.game.load.image('level1 background', 'assets/Mapas/Level 1/level1 background.png')
         this.game.load.image('level1 tileset terrain', 'assets/Mapas/Level 1/level1 tileset terrain.png')
         this.game.load.image('horrortileset', 'assets/Player/horrortileset.png')
