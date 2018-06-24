@@ -33,7 +33,7 @@ class VirtualGamepad extends Phaser.Sprite {
         let button = this.game.add.sprite(x, y, buttonImg)
         button.fixedToCamera = true
         button.anchor.setTo(0.5, 0.5)
-        button.scale.setTo(1, 1)
+        button.scale.setTo(1.3, 1.3)
         button.alpha = 0.8
         button.inputEnabled = true
         button.smoothed = false

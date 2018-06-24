@@ -71,7 +71,7 @@ class GameState extends BaseState {
         this.game.add.existing(vpad)
 
         let jumpButton = vpad.addActionButton(
-            this.game.width - 100, this.game.height - 50, 'button_action', () => this.player1.jump())
+            this.game.width - 120, this.game.height - 50, 'button_action', () => this.player1.jump())
 
         let attackButton = vpad.addAttackButton(
             this.game.width - 50, this.game.height - 50, 'button_attack', () => this.player1.jump())
