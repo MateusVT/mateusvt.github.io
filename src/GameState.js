@@ -1,5 +1,5 @@
 'use strict'
-var cursors
+var groupHearts
 class GameState extends BaseState {
 
     create() {
@@ -13,6 +13,16 @@ class GameState extends BaseState {
         this.backGround.scale.y = this.game.height / this.backGround.height
         this.backGround.fixedToCamera = true
 
+        // groupHearts = this.game.add.group()
+        // groupHearts.enableBody = true
+        // groupHearts.physicsBodyType = Phaser.Physics.ARCADE
+        // groupHearts.createMultiple(8, 'heart')
+        // groupHearts.animations.add('rotate', [0, 1, 2, 3, 4, 5], 6, true); // 6fps, looped
+        // groupHearts.animations.play('rotate');
+        // this.groupHearts.setAll('anchor.x', 0.5)
+        // this.groupHearts.setAll('anchor.y', 0.5)
+
+
         this.createTileMap()
 
 
@@ -25,10 +35,20 @@ class GameState extends BaseState {
                 fire: Phaser.Keyboard.UP
             })
 
+        // this.flyPlataform = this.game.add.sprite(100,this.game.height + 150, 'flying plataform')
+        // this.flyPlataform.enableBody = true;
+        // this.flyPlataform.immovable
+        // this.game.physics.enable(this.flyPlataform, Phaser.Physics.ARCADE);
+        // this.flyPlataform.gravity = false;
+
+        // this.flyPlataform.physicsBodyType = Phaser.Physics.ARCADE
+        // this.game.physics.arcade.enable(this.flyPlataform)
+        // this.flyPlataform.body.collideWorldBounds = true
         this.player1.position.x = -this.game.width
         this.player1.position.y = this.game.height + 170
 
         this.game.add.existing(this.player1)
+        // this.game.add.existing(this.flyPlataform)
         this.game.camera.follow(this.player1, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
 
         // this.hud = {
@@ -50,8 +70,8 @@ class GameState extends BaseState {
 
         this.game.add.existing(vpad)
 
-        let jumpButton = vpad.addActionButton( 
-        this.game.width - 100, this.game.height - 50, 'button_action', () => this.player1.jump())
+        let jumpButton = vpad.addActionButton(
+            this.game.width - 100, this.game.height - 50, 'button_action', () => this.player1.jump())
 
         let attackButton = vpad.addAttackButton(
             this.game.width - 50, this.game.height - 50, 'button_attack', () => this.player1.jump())
@@ -65,8 +85,8 @@ class GameState extends BaseState {
     }
 
 
-    iniciarCoins() {
-        this.obstaclesCoin.forEach(function (exp) {
+    iniciarHearts() {
+        this.obstaclesHeart.forEach(function (exp) {
             let anim = exp.animations.add('full', null, 20, true) // null -> array of frames
             exp.scale.setTo(0.5, 0.5)
             exp.anchor.setTo(0.5, 0.5)
@@ -75,14 +95,25 @@ class GameState extends BaseState {
         })
     }
 
+    // flyingPlataformMove() {
+
+    //     // this.flyPlataform.body.x = this.flyPlataform.body.x+2;
+    //     // this.flyPlataform.body.y = this.flyPlataform.body.y-2;
+
+
+    // }
+
 
     createTileMap() {
         this.map = this.game.add.tilemap('level1 map')
         this.map.addTilesetImage('level1 tileset terrain')
+        this.map.addTilesetImage('horrortileset')
+
+        // this.map.objects["Flying Platform"][0] = this.game.add.sprite(100,this.game.height + 150, 'flying plataform')
 
         this.mapLayer = this.map.createLayer('Tile Layer Background')
-        // this.mapLayer = this.map.createLayer('Tile Layer 2')
         this.mapLayer = this.map.createLayer('Tile Layer 1')
+        // this.mapLayer = this.map.createLayer('Tile Layer 2')
         // this.mapLayer_DamageSpike = this.map.createLayer('Tile Layer DamageSpike')        
 
 
@@ -90,11 +121,12 @@ class GameState extends BaseState {
         // this.map.setCollisionBetween(0, 300, true, 'Tile Layer DamageSpike')    
 
         // this.obstaclesSaw = this.game.add.group()
-        // this.obstaclesCoin = this.game.add.group()
+        this.obstaclesHeart = this.game.add.group()
         // this.map.createFromObjects('Object Layer DamageSaw', 215,'damage_saw', 0, true, true, this.obstaclesSaw, Saw)
-        // this.map.createFromObjects('Object Layer ItemCoin', 216,'Coin', 0, true, true, this.obstaclesCoin, Coin)
+        // this.map.createFromObjects('Object Layer Hearts', ,'Coin', 0, true, true, this.obstaclesHeart, Heart)
+        this.map.createFromObjects('Object Layer Hearts', 15, 'heart', 0, true, true, this.obstaclesHeart, Heart)
 
-        // this.iniciarCoins()
+        this.iniciarHearts()
 
         this.mapLayer.resizeWorld()
     }
@@ -109,12 +141,12 @@ class GameState extends BaseState {
     }
 
     update() {
-
         this.backGround.tilePosition.x -= 0.5
-
+        // this.flyingPlataformMove();
 
         // colisoes com mapa
         this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
+        this.game.physics.arcade.collide(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
 
         // //colisao com espinhos
         // this.game.physics.arcade.collide(this.player1, this.mapLayer_DamageSpike, this.hitSpikes, null, this)
@@ -133,7 +165,7 @@ class GameState extends BaseState {
         sprite.jumpAllow = true
     }
 
-    hitCoin(sprite, tile) {
+    hitHeart(sprite, tile) {
         sprite.score += config.SCORE_COIN
         tile.kill()
     }

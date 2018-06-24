@@ -67,8 +67,8 @@ class Player extends Phaser.Sprite {
 
         else {
             this.body.velocity.x = 0
-            this.animations.play('stay')
             // this.animations.stop()
+            this.animations.play('stay')
         }
     }
 
