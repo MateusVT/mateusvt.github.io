@@ -8,7 +8,7 @@ class Player extends Phaser.Sprite {
         //this.body.isCircle = true
         this.scale.setTo(1.5, 1.5)
         // this.body.setSize(36, 36)
-        // this.anchor.setTo(0.4, 0.4)
+        this.anchor.setTo(0.4, 0.4)
         // this.body.maxVelocity.x = config.PLAYER_MAX_VELOCITY
         // this.body.maxVelocity.y = config.PLAYER_MAX_VELOCITY_JUMP
         // this.body.position.x = 0
@@ -23,11 +23,17 @@ class Player extends Phaser.Sprite {
         // this.animations.add('walkRight', Phaser.Animation.generateFrameNames('jason', 0, 24, '', 4), 30, true);
         // octopus.animations.play('swim');
 
-        this.animations.add('walkRight', ["19", "9", "10", "11", "12", "13"], 10);
-        this.animations.add('walkLeft', ["20", "18", "17", "16", "15", "14"], 10);
-        this.animations.add('stay', ["5", "6", "3", "1"], 6);
-        this.animations.add('jump', ["29", "27", "21", "23", "25", "33", "35", "30"], 10);
-       
+        // this.animations.add('walkRight', ["19", "9", "10", "11", "12", "13"], 10);
+        // this.animations.add('walkLeft', ["20", "18", "17", "16", "15", "14"], 10);
+        // this.animations.add('stay', ["5", "6", "3", "1"], 6);
+        // this.animations.add('jump', ["29", "27", "21", "23", "25", "33", "35", "30"], 10);
+
+
+        this.animations.add('walkRight', ["9", "19", "20", "10", "11", "17", "12", "21"], 10);
+        this.animations.add('walkLeft', ["22", "13", "18", "14", "15", "23", "24", "16"], 10);
+        this.animations.add('stay', ["1"], 10);
+        // this.animations.add('jump', ["29", "27", "21", "23", "25", "33", "35", "30"], 10);
+
 
         this.keys = {
             left: game.input.keyboard.addKey(keys.left),
@@ -47,9 +53,10 @@ class Player extends Phaser.Sprite {
 
 
     movePerson() {
-        
+
         if (this.keys.left.isDown) {
             this.body.velocity.x = -config.PLAYER_VELOCITY_X
+            this.body.res
             this.animations.play('walkLeft');
 
         }
@@ -61,7 +68,7 @@ class Player extends Phaser.Sprite {
         else {
             this.body.velocity.x = 0
             this.animations.play('stay')
-            this.animations.stop()
+            // this.animations.stop()
         }
     }
 
