@@ -26,6 +26,9 @@ class BootState extends Phaser.State {
         this.game.load.spritesheet('heart', 'assets/Collectable/heart.png', 50, 50)
         this.game.load.spritesheet('jasonmask', 'assets/Collectable/jasonMask.png', 64, 64)
 
+        //Sound Effects 
+        this.game.load.audio('evilLaugh1', 'assets/Sound Effects/Evil Laugh 1.mp3')
+
         // Levels
         //Level 1
         this.game.load.tilemap('level1', 'assets/Mapas/Level 1/Level 1.json', null, Phaser.Tilemap.TILED_JSON)

@@ -1,5 +1,7 @@
 'use strict'
 var groupHearts
+var evilLaugh1
+
 class GameState extends BaseState {
 
     create() {
@@ -24,6 +26,7 @@ class GameState extends BaseState {
 
 
         this.createTileMap()
+        this.createAudios()
 
 
         this.player1 = new Player(this.game, 100, 100,
@@ -150,6 +153,14 @@ class GameState extends BaseState {
         }
     }
 
+    createAudios() {
+       evilLaugh1 = this.game.add.audio('evilLaugh1')
+    }
+
+    playThemeSong() {
+        // songTheme.loopFull(0.5)
+    }
+
     update() {
         this.backGround.tilePosition.x -= 0.5
         // this.flyingPlataformMove();
@@ -176,7 +187,8 @@ class GameState extends BaseState {
     }
 
     hitHeart(sprite, tile) {
-        sprite.score += config.SCORE_COIN
+        // sprite.score += config.SCORE_COIN
+        evilLaugh1.play()
         tile.kill()
     }
 
