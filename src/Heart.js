@@ -6,10 +6,9 @@ class Heart extends Phaser.Sprite {
 
         game.physics.arcade.enable(this)
 
-        this.body.isCircle = true
+        // this.body.isCircle = true
         this.body.allowGravity = false
-        this.body.immovable = true
-        
+        this.body.immovable = true        
         this.animations.play('heart', 10, true)
     }
 } 
