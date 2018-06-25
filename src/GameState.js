@@ -105,30 +105,40 @@ class GameState extends BaseState {
 
 
     createTileMap() {
-        this.map = this.game.add.tilemap('level1 map')
-        this.map.addTilesetImage('level1 tileset terrain')
-        this.map.addTilesetImage('horrortileset')
+        this.map = this.game.add.tilemap('level1')
+        this.map.addTilesetImage('level 1 map')
+        this.mapLayer = this.map.createLayer('Background Layer')
+        this.mapLayer = this.map.createLayer('Map Layer')
+        this.map.setCollisionBetween(0, 300, true, 'Map Layer')
+
+
+
+
+        this.obstaclesHeart = this.game.add.group()
+        this.map.createFromObjects('Object Layer', 111, 'heart', 0, true, true, this.obstaclesHeart, Heart)
+        // this.map.createFromObjects('Object Layer', 112, 'jsonMask', 0, true, true, this.obstaclesHeart, Heart)
+        this.iniciarHearts()
+        this.mapLayer.resizeWorld()
+
+
+
+        // this.map.addTilesetImage('pillar')
+        // this.map.addTilesetImage('spike')
 
         // this.map.objects["Flying Platform"][0] = this.game.add.sprite(100,this.game.height + 150, 'flying plataform')
 
-        this.mapLayer = this.map.createLayer('Tile Layer Background')
-        this.mapLayer = this.map.createLayer('Tile Layer 1')
+        // this.mapLayer = this.map.createLayer('Tile Layer Background')
         // this.mapLayer = this.map.createLayer('Tile Layer 2')
         // this.mapLayer_DamageSpike = this.map.createLayer('Tile Layer DamageSpike')        
 
 
-        this.map.setCollisionBetween(0, 300, true, 'Tile Layer 1')
         // this.map.setCollisionBetween(0, 300, true, 'Tile Layer DamageSpike')    
 
         // this.obstaclesSaw = this.game.add.group()
-        this.obstaclesHeart = this.game.add.group()
         // this.map.createFromObjects('Object Layer DamageSaw', 215,'damage_saw', 0, true, true, this.obstaclesSaw, Saw)
         // this.map.createFromObjects('Object Layer Hearts', ,'Coin', 0, true, true, this.obstaclesHeart, Heart)
-        this.map.createFromObjects('Object Layer Hearts', 111, 'heart', 0, true, true, this.obstaclesHeart, Heart)
 
-        this.iniciarHearts()
 
-        this.mapLayer.resizeWorld()
     }
 
     toggleFullScreen() {
