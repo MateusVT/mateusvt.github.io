@@ -158,6 +158,18 @@
                  "width":50,
                  "x":1671,
                  "y":243.666666666667
+                }, 
+                {
+                 "gid":111,
+                 "height":50,
+                 "id":40,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":323,
+                 "y":567
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -165,7 +177,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":40,
+ "nextobjectid":42,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",
@@ -253,7 +265,7 @@
             {
              "0":
                 {
-                 "image":"flying plataform.png",
+                 "image":"..\/..\/Interactable\/flying plataform.png",
                  "imageheight":65,
                  "imagewidth":132
                 }

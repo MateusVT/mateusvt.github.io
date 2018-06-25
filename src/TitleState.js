@@ -22,27 +22,30 @@ class TitleState extends BaseState {
         this.fog.tileScale.setTo(10, 10)
         this.fog.alpha = 0.2
 
+        this.pressedTouch = false
         this.pressStart = this.createText(this.game.width / 2, this.game.height * 2 / 3, 'Toque para Iniciar', 24)
         this.info = this.createText(this.game.width / 2, this.game.height - 100, 'Mateus Torres', 18)
         this.info = this.createText(this.game.width / 2, this.game.height - 50, 'UTFPR-CM  /  2018', 18)
 
         let startButton = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        this.game.input.onDown.add(this.startGame, this);
         // startButton.events.onInputDown.add(this.startGame, this)
         // let startButtonM = this.input.pointer1.isDown.add()
         this.initFullScreenButtons()
     }
 
     startGame() {
-        if (this.input.pointer1.isDown) {
+        // if (this.input.pointer1.isDown) {
 
-            this.state.start('Game')
-        }
+        //     this.state.start('Game')
+        // }
         this.state.start('Game')
     }
 
     update() {
         this.fog.tilePosition.x += 0.3
-        this.startGame()
+
+        // this.startGame()
         // this.sky.tilePosition.x += 0.5
     }
 
