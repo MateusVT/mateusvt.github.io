@@ -155,14 +155,14 @@ class GameState extends BaseState {
     }
 
     createAudios() {
-        // evilLaugh1 = this.game.add.audio('evilLaugh1')
-        // theme = this.game.add.audio('theme')
-        // jasonEffect = this.game.add.audio('jasonEffect')
+        evilLaugh1 = this.game.add.audio('evilLaugh1')
+        theme = this.game.add.audio('theme')
+        jasonEffect = this.game.add.audio('jasonEffect')
     }
 
     playThemeSong() {
-        // theme.loopFull(0.5)
-        // jasonEffect.loopFull(0.8)
+        theme.loopFull(0.5)
+        jasonEffect.loopFull(0.8)
     }
 
     update() {
@@ -172,8 +172,8 @@ class GameState extends BaseState {
         // colisoes com mapa
         this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
         this.game.physics.arcade.collide(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
-        
-       
+
+
         // else {
         //     jasonEffect.stop()
         // }
