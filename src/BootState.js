@@ -16,7 +16,12 @@ class BootState extends Phaser.State {
         
         
         // Effects
-        this.game.load.image('fog', 'assets/Effects/fog.png')
+        this.game.load.image('fog1', 'assets/Effects/fog1.png')
+        this.game.load.image('fog2', 'assets/Effects/fog2.png')
+        this.game.load.image('fog3', 'assets/Effects/fog3.png')
+        this.game.load.image('fog4', 'assets/Effects/fog4.png')
+        this.game.load.image('fog5', 'assets/Effects/fog5.png')
+        this.game.load.image('fog6', 'assets/Effects/fog6.png')
         
         
         // Caracter        

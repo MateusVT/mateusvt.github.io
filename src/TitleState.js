@@ -18,7 +18,7 @@ class TitleState extends BaseState {
         this.title.anchor.setTo(0.87, 1)
         // this.title.scale.setTo(1.5, 1.5)
 
-        this.fog = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'fog')
+        this.fog = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'fog1')
         this.fog.tileScale.setTo(10, 10)
         this.fog.alpha = 0.2
 

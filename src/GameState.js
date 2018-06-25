@@ -16,6 +16,7 @@ class GameState extends BaseState {
         this.backGround.scale.y = this.game.height / this.backGround.height
         this.backGround.fixedToCamera = true
 
+        
         // groupHearts = this.game.add.group()
         // groupHearts.enableBody = true
         // groupHearts.physicsBodyType = Phaser.Physics.ARCADE
@@ -24,11 +25,16 @@ class GameState extends BaseState {
         // groupHearts.animations.play('rotate');
         // this.groupHearts.setAll('anchor.x', 0.5)
         // this.groupHearts.setAll('anchor.y', 0.5)
-
-
+        
+        
         this.createTileMap()
         this.createAudios()
-        this.playThemeSong()
+        this.playThemeSong(
+
+        )
+        this.fog = this.game.add.tileSprite(0, 0, 6400, 960, 'fog3')
+        this.fog.tileScale.setTo(5, 5)
+        this.fog.alpha = 0.3
 
         this.player1 = new Player(this.game, 100, 100,
             'jason', 0xff0000, null, {
@@ -156,20 +162,23 @@ class GameState extends BaseState {
 
     createAudios() {
         evilLaugh1 = this.game.add.audio('evilLaugh1')
-        evilLaugh1.volume = 0.8
+        evilLaugh1.volume = 1.0
         theme = this.game.add.audio('theme')
-        theme.start = 2.5
+        // theme.start = 33000
         jasonEffect = this.game.add.audio('jasonEffect')
     }
 
     playThemeSong() {
-        theme.loopFull(0.5)
-        jasonEffect.loopFull(0.3)
+        theme.loopFull(0.8)
+        // jasonEffect.loopFull(0.3)
     }
 
     update() {
         this.backGround.tilePosition.x -= 0.5
-        // this.flyingPlataformMove();
+        this.fog.tilePosition.x += 0.1        
+        this.fog.tilePosition.y -= 0.1
+        // this.fog.tilePosition.x += 0.1
+        // // this.flyingPlataformMove();
 
         // colisoes com mapa
         this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
