@@ -22,7 +22,8 @@ class TitleState extends BaseState {
         this.fog.tileScale.setTo(10, 10)
         this.fog.alpha = 0.2
 
-        this.pressStart = this.createText(this.game.width / 2, this.game.height * 2 / 3, 'Touch to Start', 24)
+        this.pressStart = this.createText(this.game.width / 2, this.game.height * 2 / 3, 'Toque para Iniciar', 24)
+        this.info = this.createText(this.game.width / 2, this.game.height - 100, 'Mateus Torres', 18)
         this.info = this.createText(this.game.width / 2, this.game.height - 50, 'UTFPR-CM  /  2018', 18)
 
         let startButton = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
