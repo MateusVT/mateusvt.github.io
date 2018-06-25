@@ -1,8 +1,8 @@
-class Player extends Phaser.Sprite {
 
+
+class Player extends Phaser.Sprite {
     constructor(game, x, y, img, tint, bullets, keys) {
         super(game, x, y, img)
-
         game.physics.arcade.enable(this)
         // this.health = config.PLAYER_HEALTH
         //this.body.isCircle = true
@@ -67,7 +67,6 @@ class Player extends Phaser.Sprite {
 
         else {
             this.body.velocity.x = 0
-            // this.animations.stop()
             this.animations.play('stay')
         }
     }

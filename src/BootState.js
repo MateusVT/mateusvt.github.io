@@ -3,7 +3,7 @@
 class BootState extends Phaser.State {
 
     preload() {
-
+        
         //Title
         // this.game.load.spritesheet('button_action', 'assets/Title/Hero Title.png', 300, 96)
 
@@ -29,6 +29,7 @@ class BootState extends Phaser.State {
         //Sound Effects 
         this.game.load.audio('theme', 'assets/Sound Effects/Theme.mp3')
         this.game.load.audio('evilLaugh1', 'assets/Sound Effects/Evil Laugh 1.mp3')
+        this.game.load.audio('jasonEffect', 'assets/Sound Effects/Jason Effect.mp3')
 
         // Levels
         //Level 1
