@@ -1,7 +1,7 @@
 'use strict'
 var groupHearts
 var evilLaugh1
-
+var theme
 class GameState extends BaseState {
 
     create() {
@@ -27,7 +27,7 @@ class GameState extends BaseState {
 
         this.createTileMap()
         this.createAudios()
-
+        this.playThemeSong()
 
         this.player1 = new Player(this.game, 100, 100,
             'jason', 0xff0000, null, {
@@ -119,7 +119,7 @@ class GameState extends BaseState {
 
         this.obstaclesHeart = this.game.add.group()
         this.map.createFromObjects('Object Layer', 111, 'heart', 0, true, true, this.obstaclesHeart, Heart)
-        // this.map.createFromObjects('Object Layer', 112, 'jsonMask', 0, true, true, this.obstaclesHeart, Heart)
+        this.map.createFromObjects('Object Layer', 112, 'jasonMask', 0, true, true, this.obstaclesHeart, Heart)
         this.iniciarHearts()
         this.mapLayer.resizeWorld()
 
@@ -155,10 +155,11 @@ class GameState extends BaseState {
 
     createAudios() {
        evilLaugh1 = this.game.add.audio('evilLaugh1')
+       theme = this.game.add.audio('theme')
     }
 
     playThemeSong() {
-        // songTheme.loopFull(0.5)
+        theme.loopFull(0.5)
     }
 
     update() {
