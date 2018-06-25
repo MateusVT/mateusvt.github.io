@@ -12,7 +12,7 @@ class TitleState extends BaseState {
 
         // this.title = this.game.add.sprite(this.game.width/2, this.game.height*1/3, 'title')
 
-      
+
 
         this.title = this.game.add.sprite(800, 480, 'titleBackGround')
         this.title.anchor.setTo(0.87, 1)
@@ -27,17 +27,22 @@ class TitleState extends BaseState {
         this.info = this.createText(this.game.width / 2, this.game.height - 50, 'UTFPR-CM  /  2018', 18)
 
         let startButton = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-        startButton.onDown.add(this.startGame, this)
-
+        // startButton.events.onInputDown.add(this.startGame, this)
+        // let startButtonM = this.input.pointer1.isDown.add()
         this.initFullScreenButtons()
     }
 
     startGame() {
+        if (this.input.pointer1.isDown) {
+
+            this.state.start('Game')
+        }
         this.state.start('Game')
     }
 
     update() {
         this.fog.tilePosition.x += 0.3
+        this.startGame()
         // this.sky.tilePosition.x += 0.5
     }
 
