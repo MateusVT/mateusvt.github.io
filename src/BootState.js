@@ -18,7 +18,7 @@ class BootState extends Phaser.State {
         // this.game.load.spritesheet('hero', 'assets/Player/hero.png', 50, 37, 154)
         // this.game.load.atlasJSONArray('jason', 'assets/Player/jason.png', 'assets/Player/jason.json' )
 
-        this.game.load.atlasJSONArray('jason', 'assets/Player/jason.png', 'assets/Player/Jason.json')
+        this.game.load.atlasJSONArray('jason', 'assets/Player/jason.png', 'assets/Player/jason.json')
         // this.game.load.spritesheet('hero', 'assets/Player/hero1.png', 36, 46,6,0,1)
         // this.game.load.image('hero', 'assets/Imagens/hero.png')
 
