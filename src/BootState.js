@@ -59,7 +59,7 @@ class BootState extends Phaser.State {
     }
 
     create() {
-        console.log("BootState created")
+        // console.log("BootState created")
         this.state.start('Title')
         // this.state.start('Game')
     }
