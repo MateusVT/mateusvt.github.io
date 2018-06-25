@@ -156,13 +156,15 @@ class GameState extends BaseState {
 
     createAudios() {
         evilLaugh1 = this.game.add.audio('evilLaugh1')
+        evilLaugh1.volume = 0.8
         theme = this.game.add.audio('theme')
+        theme.start = 2.5
         jasonEffect = this.game.add.audio('jasonEffect')
     }
 
     playThemeSong() {
         theme.loopFull(0.5)
-        jasonEffect.loopFull(0.8)
+        jasonEffect.loopFull(0.3)
     }
 
     update() {
@@ -195,7 +197,7 @@ class GameState extends BaseState {
     }
 
     hitHeart(sprite, tile) {
-        // sprite.score += config.SCORE_COIN
+        // sprite.score += config.SCORE_COIN]
         evilLaugh1.play()
         tile.kill()
     }

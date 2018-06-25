@@ -5,15 +5,20 @@ class BootState extends Phaser.State {
     preload() {
 
         //Title
-        // this.game.load.spritesheet('button_action', 'assets/Title/Hero Title.png', 300, 96)
+        this.game.load.image('titleBackGround', 'assets/Title/Ttile Background.png', 800, 480)
+        // this.game.load.image('button_action', 'assets/Title/Hero Title.png', 300, 96)
 
         //Virtual Pad
         this.game.load.spritesheet('button_action', 'assets/Control/button_action.png', 50, 50)
         this.game.load.image('button_move', 'assets/Control/button_move.png', 105, 50)
         // this.game.load.spritesheet('button_move', 'assets/Control/button_move.png', 105, 50)
         this.game.load.spritesheet('button_attack', 'assets/Control/button_attack.png', 50, 50)
-
-
+        
+        
+        // Effects
+        this.game.load.image('fog', 'assets/Effects/fog.png')
+        
+        
         // Caracter        
         // this.game.load.spritesheet('hero', 'assets/Player/hero.png', 50, 37, 154)
         // this.game.load.atlasJSONArray('jason', 'assets/Player/jason.png', 'assets/Player/jason.json' )
@@ -21,6 +26,10 @@ class BootState extends Phaser.State {
         this.game.load.atlasJSONArray('jason', 'assets/Player/playerJason.png', 'assets/Player/jason.json')
         // this.game.load.spritesheet('hero', 'assets/Player/hero1.png', 36, 46,6,0,1)
         // this.game.load.image('hero', 'assets/Imagens/hero.png')
+
+        //Interactable
+        this.game.load.image('flyeingPlataform', 'assets/Interactable/flying plataform.png', 132, 65)
+
 
         //Collectable
         this.game.load.spritesheet('heart', 'assets/Collectable/heart.png', 50, 50)
@@ -51,7 +60,7 @@ class BootState extends Phaser.State {
 
     create() {
         console.log("BootState created")
-        // this.state.start('Title')
-        this.state.start('Game')
+        this.state.start('Title')
+        // this.state.start('Game')
     }
 }
