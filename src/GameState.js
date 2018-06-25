@@ -155,13 +155,13 @@ class GameState extends BaseState {
     }
 
     createAudios() {
-        evilLaugh1 = this.game.add.audio('evilLaugh1')
-        theme = this.game.add.audio('theme')
-        jasonEffect = this.game.add.audio('jasonEffect')
+        // evilLaugh1 = this.game.add.audio('evilLaugh1')
+        // theme = this.game.add.audio('theme')
+        // jasonEffect = this.game.add.audio('jasonEffect')
     }
 
     playThemeSong() {
-        theme.loopFull(0.5)
+        // theme.loopFull(0.5)
         // jasonEffect.loopFull(0.8)
     }
 

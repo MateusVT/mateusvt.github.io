@@ -3,7 +3,7 @@
 class BootState extends Phaser.State {
 
     preload() {
-        
+
         //Title
         // this.game.load.spritesheet('button_action', 'assets/Title/Hero Title.png', 300, 96)
 
