@@ -90,7 +90,7 @@ class GameState extends BaseState {
             anim.onComplete.add(() => exp.kill())
         })
         this.obstaclesHeart.forEach(function (exp) {
-            let anim = exp.animations.add('full', null, 20, true) // null -> array of frames
+            let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
             exp.scale.setTo(0.5, 0.5)
             exp.anchor.setTo(0.5, 0.5)
             exp.animations.play('full')
@@ -187,7 +187,7 @@ class GameState extends BaseState {
         // this.game.physics.arcade.collide.
         this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
         this.game.physics.arcade.collide(this.player1, this.obstacleSpike, this.hitSpike)
-        this.game.physics.arcade.collide(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
+        this.game.physics.arcade.overlap(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
         this.game.physics.arcade.collide(this.player1, this.obstaclePlataformUpDown, this.setAllowJumpInPlataform)
         this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.mapLayer, this.plataformCollideGround)
         this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.obstacleInvisibleWall, this.plataformCollideSky)
@@ -242,7 +242,7 @@ class GameState extends BaseState {
         // força atualizaçao dos tiles no map
         // this.mapLayer.dirty = true
         // this.game.camera.shake(0.01, 200);
-        // this.state.start('Game')
+        // this.state.restart('Game')
     }
 
     hitSaw(player, obstacle) {
@@ -275,6 +275,6 @@ class GameState extends BaseState {
         //     this.game.debug.body(obj)
         // }, this)
 
-        // this.game.debug.body(this.player1)
+        this.game.debug.body(this.player1)
     }
 }

@@ -86,12 +86,23 @@ class Player extends Phaser.Sprite {
 
         else if (this.keys.w.isDown) {
             if (this.jumpAllow) {
+                if(this.inPlataform){
+                this.lastKey = this.upPressed
+                this.body.velocity.y += 0
+                this.body.velocity.y += -config.PLAYER_MAX_JUMP
+                this.animations.play('jump')
+                }else{
+                
                 this.lastKey = this.upPressed
                 this.body.velocity.y += -config.PLAYER_MAX_JUMP
                 this.animations.play('jump')
-            }
+            }}
 
             this.jumpAllow = false
+        }
+
+        else if (this.keys.space.isDown) {
+          this.animations.play('attackRight');
         }
         else {
             this.body.velocity.x = 0
@@ -109,11 +120,11 @@ class Player extends Phaser.Sprite {
     }
 
     attack() {
-        if (this.keys.attack.isDown) {
+        if (this.keys.space.isDown) {
             // this.body.velocity.x = -config.PLAYER_VELOCITY_X
             // // this.body.res
             // this.lastKey = 1
-            // this.animations.play('attackRight', null, false, true);
+            this.animations.play('attackRight', null, false, true);
 
         }
 
@@ -122,6 +133,7 @@ class Player extends Phaser.Sprite {
 
     jump() {
         if (this.jumpAllow) {
+            this.body.velocity.y += 0            
             this.body.velocity.y += -config.PLAYER_MAX_JUMP
             this.animations.play('jump')
         }

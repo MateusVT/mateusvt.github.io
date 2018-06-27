@@ -43,6 +43,7 @@ class TitleState extends BaseState {
     }
 
     update() {
+         this.game.camera.shake(0.00001, 20);
         this.fog.tilePosition.x += 0.3
 
         // this.startGame()
