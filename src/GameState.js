@@ -16,17 +16,7 @@ class GameState extends BaseState {
         this.backGround.scale.y = this.game.height / this.backGround.height
         this.backGround.fixedToCamera = true
 
-        
-        // groupHearts = this.game.add.group()
-        // groupHearts.enableBody = true
-        // groupHearts.physicsBodyType = Phaser.Physics.ARCADE
-        // groupHearts.createMultiple(8, 'heart')
-        // groupHearts.animations.add('rotate', [0, 1, 2, 3, 4, 5], 6, true); // 6fps, looped
-        // groupHearts.animations.play('rotate');
-        // this.groupHearts.setAll('anchor.x', 0.5)
-        // this.groupHearts.setAll('anchor.y', 0.5)
-        
-        
+
         this.createTileMap()
         this.createAudios()
         this.playThemeSong(
@@ -41,24 +31,19 @@ class GameState extends BaseState {
                 left: Phaser.Keyboard.LEFT,
                 right: Phaser.Keyboard.RIGHT,
                 up: Phaser.Keyboard.UP,
-                down: Phaser.Keyboard.DOWN,
-                fire: Phaser.Keyboard.UP
+                attack: Phaser.Keyboard.SPACEBAR,
+                a: Phaser.Keyboard.A,
+                w: Phaser.Keyboard.W,
+                d: Phaser.Keyboard.D,
+                space: Phaser.Keyboard.SPACEBAR,
             })
 
-        // this.flyPlataform = this.game.add.sprite(100,this.game.height + 150, 'flying plataform')
-        // this.flyPlataform.enableBody = true;
-        // this.flyPlataform.immovable
-        // this.game.physics.enable(this.flyPlataform, Phaser.Physics.ARCADE);
-        // this.flyPlataform.gravity = false;
 
-        // this.flyPlataform.physicsBodyType = Phaser.Physics.ARCADE
-        // this.game.physics.arcade.enable(this.flyPlataform)
-        // this.flyPlataform.body.collideWorldBounds = true
+
         this.player1.position.x = -this.game.width
         this.player1.position.y = this.game.height + 170
 
         this.game.add.existing(this.player1)
-        // this.game.add.existing(this.flyPlataform)
         this.game.camera.follow(this.player1, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
 
         // this.hud = {
@@ -95,7 +80,15 @@ class GameState extends BaseState {
     }
 
 
-    iniciarHearts() {
+    iniciaAnimations() {
+
+        this.obstaclesPortal.forEach(function (exp) {
+            let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
+            // exp.scale.setTo(0.5, 0.5)
+            exp.anchor.setTo(0.5, 0.5)
+            exp.animations.play('full')
+            anim.onComplete.add(() => exp.kill())
+        })
         this.obstaclesHeart.forEach(function (exp) {
             let anim = exp.animations.add('full', null, 20, true) // null -> array of frames
             exp.scale.setTo(0.5, 0.5)
@@ -125,9 +118,17 @@ class GameState extends BaseState {
 
 
         this.obstaclesHeart = this.game.add.group()
+        this.obstaclesPortal = this.game.add.group()
+        this.obstaclePlataformUpDown = this.game.add.group()
+        this.obstacleInvisibleWall = this.game.add.group()
+        this.obstacleSpike = this.game.add.group()
         this.map.createFromObjects('Object Layer', 111, 'heart', 0, true, true, this.obstaclesHeart, Heart)
-        this.map.createFromObjects('Object Layer', 112, 'jasonMask', 0, true, true, this.obstaclesHeart, Heart)
-        this.iniciarHearts()
+        this.map.createFromObjects('Object Layer', 112, 'jasonMask', 0, true, true, this.obstaclesHeart)
+        this.map.createFromObjects('Object Layer', 113, 'flyingPlataform', 0, true, true, this.obstaclePlataformUpDown, Plataform)
+        this.map.createFromObjects('Object Layer', 114, 'portal', 0, true, true, this.obstaclesPortal, Portal)
+        this.map.createFromObjects('Object Layer', 115, 'invisibleWall', 0, true, true, this.obstacleInvisibleWall, InvisibleWall)
+        this.map.createFromObjects('Object Layer', 116, 'spike', 0, true, true, this.obstacleSpike, Spike)
+        this.iniciaAnimations()
         this.mapLayer.resizeWorld()
 
 
@@ -173,16 +174,23 @@ class GameState extends BaseState {
         // jasonEffect.loopFull(0.3)
     }
 
+
+
     update() {
         this.backGround.tilePosition.x -= 0.5
-        this.fog.tilePosition.x += 0.1        
+        this.fog.tilePosition.x += 0.1
         this.fog.tilePosition.y -= 0.1
         // this.fog.tilePosition.x += 0.1
         // // this.flyingPlataformMove();
 
         // colisoes com mapa
+        // this.game.physics.arcade.collide.
         this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
+        this.game.physics.arcade.collide(this.player1, this.obstacleSpike, this.hitSpike)
         this.game.physics.arcade.collide(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
+        this.game.physics.arcade.collide(this.player1, this.obstaclePlataformUpDown, this.setAllowJumpInPlataform)
+        this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.mapLayer, this.plataformCollideGround)
+        this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.obstacleInvisibleWall, this.plataformCollideSky)
 
 
         // else {
@@ -200,9 +208,24 @@ class GameState extends BaseState {
         this.updateHud()
     }
 
+    plataformCollideGround(sprite, tile) {
+        sprite.hitGround = true
+        sprite.hitSky = false
+    }
+
+
+    plataformCollideSky(sprite, tile) {
+        sprite.hitSky = true
+        sprite.hitGround = false
+    }
 
     setAllowJump(sprite, tile) {
         sprite.jumpAllow = true
+    }
+
+    setAllowJumpInPlataform(sprite, tile) {
+        sprite.jumpAllow = true
+        sprite.inPlataform = true
     }
 
     hitHeart(sprite, tile) {
@@ -211,11 +234,15 @@ class GameState extends BaseState {
         tile.kill()
     }
 
-    hitSpikes(sprite, tile) {
-        sprite.alpha = 0.5
-        tile.alpha = 0
+
+
+    hitSpike(sprite, tile) {
+        // sprite.alpha = 0.5
+        // tile.alpha = 0
         // força atualizaçao dos tiles no map
-        this.mapLayer.dirty = true
+        // this.mapLayer.dirty = true
+        // this.game.camera.shake(0.01, 200);
+        // this.state.start('Game')
     }
 
     hitSaw(player, obstacle) {
@@ -240,15 +267,14 @@ class GameState extends BaseState {
 
     render() {
 
-        // this.obstaclesSaw.forEach(function(obj){ 
+        // this.obstacleInvisibleWall.forEach(function (obj) {
         //     this.game.debug.body(obj)
-        // },this)
+        // }, this)
 
-        // this.obstaclesCoin.forEach(function(obj){
+        // this.obstaclePlataformUpDown.forEach(function (obj) {
         //     this.game.debug.body(obj)
-        // },this)
+        // }, this)
 
         // this.game.debug.body(this.player1)
-        // game.debug.body(player2)
     }
 }

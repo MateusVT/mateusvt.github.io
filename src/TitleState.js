@@ -39,7 +39,7 @@ class TitleState extends BaseState {
 
         //     this.state.start('Game')
         // }
-        this.state.start('Game')
+        this.state.start('GameState')
     }
 
     update() {

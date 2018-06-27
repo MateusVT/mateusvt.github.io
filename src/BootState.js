@@ -13,8 +13,8 @@ class BootState extends Phaser.State {
         this.game.load.image('button_move', 'assets/Control/button_move.png', 105, 50)
         // this.game.load.spritesheet('button_move', 'assets/Control/button_move.png', 105, 50)
         this.game.load.spritesheet('button_attack', 'assets/Control/button_attack.png', 50, 50)
-        
-        
+
+
         // Effects
         this.game.load.image('fog1', 'assets/Effects/fog1.png')
         this.game.load.image('fog2', 'assets/Effects/fog2.png')
@@ -22,18 +22,19 @@ class BootState extends Phaser.State {
         this.game.load.image('fog4', 'assets/Effects/fog4.png')
         this.game.load.image('fog5', 'assets/Effects/fog5.png')
         this.game.load.image('fog6', 'assets/Effects/fog6.png')
-        
-        
-        // Caracter        
-        // this.game.load.spritesheet('hero', 'assets/Player/hero.png', 50, 37, 154)
-        // this.game.load.atlasJSONArray('jason', 'assets/Player/jason.png', 'assets/Player/jason.json' )
 
+
+        // Caracter        
         this.game.load.atlasJSONArray('jason', 'assets/Player/playerJason.png', 'assets/Player/jason.json')
-        // this.game.load.spritesheet('hero', 'assets/Player/hero1.png', 36, 46,6,0,1)
-        // this.game.load.image('hero', 'assets/Imagens/hero.png')
 
         //Interactable
-        this.game.load.image('flyeingPlataform', 'assets/Interactable/flying plataform.png', 132, 65)
+        this.game.load.image('flyingPlataform', 'assets/Interactable/flying plataform.png')
+        this.game.load.image('invisibleWall', 'assets/Interactable/invisibleWall.png')
+        this.game.load.spritesheet('portal', 'assets/Interactable/portal.png', 148, 120)
+
+
+        //Obstacles
+        this.game.load.image('spike', 'assets/Obstacles/spike.png')
 
 
         //Collectable
@@ -64,7 +65,6 @@ class BootState extends Phaser.State {
     }
 
     create() {
-        // console.log("BootState created")
         this.state.start('Title')
         // this.state.start('Game')
     }
