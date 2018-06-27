@@ -34,6 +34,9 @@ class Player extends Phaser.Sprite {
 
         this.animations.add('walkRight', ["9", "19", "20", "10", "11", "17", "12", "21"], 11);
         this.animations.add('walkLeft', ["22", "13", "18", "14", "15", "23", "24", "16"], 11);
+        this.animations.add('attackRight', ["43", "39", "41", "47", "45"], 11);
+        // this.animations.add('attackLeft', ["46", "48", "42", "40", "44"], 11);
+        this.animations.add('attackLeft', ["44", "40", "42", "48", "46"], 11);
         // this.animations.add('stayRight', ["4", "3",], 5);
         // this.animations.add('stayRight', ["4", "3",], 5);
         this.animations.add('stay', ["1"], 5);
@@ -105,7 +108,17 @@ class Player extends Phaser.Sprite {
         }
     }
 
-    
+    attack() {
+        if (this.keys.attack.isDown) {
+            // this.body.velocity.x = -config.PLAYER_VELOCITY_X
+            // // this.body.res
+            // this.lastKey = 1
+            // this.animations.play('attackRight', null, false, true);
+
+        }
+
+    }
+
 
     jump() {
         if (this.jumpAllow) {
@@ -117,5 +130,6 @@ class Player extends Phaser.Sprite {
 
     update() {
         this.movePerson()
+        this.attack()
     }
 }
