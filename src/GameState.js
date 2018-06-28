@@ -445,7 +445,6 @@ class GameState extends BaseState {
         //     this.game.debug.body(obj)
         // }, this)
 
-<<<<<<< HEAD
         this.obstaclesPlataformSide.forEach(function (obj) {
             this.game.debug.body(obj)
         }, this)
@@ -459,8 +458,6 @@ class GameState extends BaseState {
         }, this)
 
 
-=======
->>>>>>> origin/master
         // this.game.debug.body(this.player1)
     }
 }
