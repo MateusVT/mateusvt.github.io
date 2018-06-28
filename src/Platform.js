@@ -13,8 +13,8 @@ class Plataform extends Phaser.Sprite {
         this.body.collideWorldBounds = true;
         // this.body.friction = 10
         // this.body.bounce.setTo(1, 1);
-        // this.body.velocity.y = -100
-        this.body.acceleration.y = 100
+        this.body.velocity.y = 100
+
 
     }
 
@@ -26,6 +26,7 @@ class Plataform extends Phaser.Sprite {
             this.body.velocity.y = +100
         }
     }
+
 
     update() {
         this.moveUpDown()

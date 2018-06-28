@@ -1,27 +1,23 @@
 'use strict'
-var groupHearts
-var evilLaugh1
-var jasonEffect
-var theme
 class GameState extends BaseState {
 
     create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         this.game.physics.arcade.gravity.y = config.GRAVITY
 
-        let backGroundWidth = this.game.cache.getImage('level1 background').width
-        let backGroundHeight = this.game.cache.getImage('level1 background').height
-        this.backGround = this.game.add.tileSprite(0, 0, backGroundWidth, backGroundHeight, 'level1 background')
+        let backGroundWidth = this.game.cache.getImage(`level${config.LEVEL} background`).width
+
+        let backGroundHeight = this.game.cache.getImage(`level${config.LEVEL} background`).height
+        this.backGround = this.game.add.tileSprite(0, 0, backGroundWidth, backGroundHeight, `level${config.LEVEL} background`)
         this.backGround.scale.x = this.game.width / this.backGround.width
         this.backGround.scale.y = this.game.height / this.backGround.height
         this.backGround.fixedToCamera = true
-
 
         this.createTileMap()
         this.createAudios()
         this.playThemeSong()
 
-        this.fog = this.game.add.tileSprite(0, 0, 6400, 960, 'fog3')
+        this.fog = this.game.add.tileSprite(0, 0, 6400, 960, `fog${config.LEVEL}`)
         this.fog.tileScale.setTo(5, 5)
         this.fog.alpha = 0.3
 
@@ -36,7 +32,6 @@ class GameState extends BaseState {
                 d: Phaser.Keyboard.D,
                 space: Phaser.Keyboard.SPACEBAR,
             })
-
 
 
         this.player1.position.x = -this.game.width
@@ -80,92 +75,165 @@ class GameState extends BaseState {
 
     iniciaAnimations() {
 
-        this.obstaclesPortal.forEach(function (exp) {
-            let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
-            // exp.scale.setTo(0.5, 0.5)
-            exp.anchor.setTo(0.5, 0.5)
-            exp.animations.play('full')
-            anim.onComplete.add(() => exp.kill())
-        })
+        try {
+            this.obstaclesPortal.forEach(function (exp) {
+                let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
+                // exp.scale.setTo(0.5, 0.5)
+                exp.anchor.setTo(0.5, 0.5)
+                exp.animations.play('full')
+                anim.onComplete.add(() => exp.kill())
+            })
+        } catch (error) {
 
-        this.obstaclesHeart.forEach(function (exp) {
-            let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
-            exp.scale.setTo(0.5, 0.5)
-            exp.anchor.setTo(0.5, 0.5)
-            exp.animations.play('full')
-            anim.onComplete.add(() => exp.kill())
-        })
+        }
+        try {
+            this.obstaclesHeart.forEach(function (exp) {
+                let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
+                exp.scale.setTo(0.5, 0.5)
+                exp.anchor.setTo(0.5, 0.5)
+                exp.animations.play('full')
+                anim.onComplete.add(() => exp.kill())
+            })
+        } catch (error) {
 
-        // this.obstacleSpike.forEach(function (exp) {
-        //     let anim = exp.animations.add('full', null, 6, true) // null -> array of frames
-        //     exp.scale.setTo(0.5, 0.5)
-        //     exp.anchor.setTo(0.5, 0.5)
-        //     exp.animations.play('full')
-        //     anim.onComplete.add(() => exp.kill())
-        // })
+        }
+        try {
+            this.obstacleWater.forEach(function (exp) {
+                let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
+                exp.scale.setTo(0.5, 0.5)
+                exp.anchor.setTo(0.5, 0.5)
+                exp.animations.play('full')
+                anim.onComplete.add(() => exp.kill())
+            })
+        } catch (error) {
+
+        }
+        try {
+            this.obstaclesLava.forEach(function (exp) {
+                let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
+                exp.scale.setTo(0.5, 0.5)
+                exp.anchor.setTo(0.5, 0.5)
+                exp.animations.play('full')
+                anim.onComplete.add(() => exp.kill())
+            })
+        } catch (error) {
+            console.log("erro" + error)
+
+        }
+        try {
+            this.obstaclePoison.forEach(function (exp) {
+                let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
+                exp.scale.setTo(0.5, 0.5)
+                exp.anchor.setTo(0.5, 0.5)
+                exp.animations.play('full')
+                anim.onComplete.add(() => exp.kill())
+            })
+        } catch (error) {
+
+        }
+        try {
+            this.obstacleLama.forEach(function (exp) {
+                let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
+                exp.scale.setTo(0.5, 0.5)
+                exp.anchor.setTo(0.5, 0.5)
+                exp.animations.play('full')
+                anim.onComplete.add(() => exp.kill())
+            })
+        } catch (error) {
+
+        }
+
     }
-
-    // flyingPlataformMove() {
-
-    //     // this.flyPlataform.body.x = this.flyPlataform.body.x+2;
-    //     // this.flyPlataform.body.y = this.flyPlataform.body.y-2;
-
-
-    // }
-
-    // loadFile() {
-    //     let text = this.game.cache.getText('map1');
-    //     return text.split('\n');
-    // }
 
 
 
 
 
     createTileMap() {
-        this.map = this.game.add.tilemap(`level${config.LEVEL}`)
-        // this.map = this.game.add.tilemap('level2')
-        this.map.addTilesetImage('level 1 map')
-        this.mapLayer = this.map.createLayer('Background Layer')
-        this.mapLayer = this.map.createLayer('Map Layer')
-        this.map.setCollisionBetween(0, 300, true, 'Map Layer')
+        this.map = this.game.add.tilemap(`level${config.LEVEL}`)// morre aqui
+        // this.map = this.game.add.tilemap('level1')
+
+        if (config.LEVEL == 1) {
+            this.map.addTilesetImage('level 1 map')
+            this.mapLayer = this.map.createLayer('Background Layer')
+            this.mapLayer = this.map.createLayer('Map Layer')
+            this.map.setCollisionBetween(0, 300, true, 'Map Layer')
+
+            this.obstaclesHeart = this.game.add.group()
+            this.obstaclesJasonMask = this.game.add.group()
+            this.obstaclesPortal = this.game.add.group()
+            this.obstaclePlataformUpDown = this.game.add.group()
+            this.obstacleInvisibleWall = this.game.add.group()
+            this.obstacleSpike = this.game.add.group()
+
+            this.map.createFromObjects('Object Layer', 155, 'heart', 0, true, true, this.obstaclesHeart, Heart)
+            this.map.createFromObjects('Object Layer', 156, 'jasonMask', 0, true, true, this.obstaclesJasonMask, JasonMask)
+            this.map.createFromObjects('Object Layer', 157, 'flyingPlataform', 0, true, true, this.obstaclePlataformUpDown, Plataform)
+            this.map.createFromObjects('Object Layer', 158, 'spike', 0, true, true, this.obstacleSpike, Spike)
+            this.map.createFromObjects('Object Layer', 159, 'invisibleWall', 0, true, true, this.obstacleInvisibleWall, InvisibleWall)
+            this.map.createFromObjects('Object Layer', 160, 'portal', 0, true, true, this.obstaclesPortal, Portal)
+            // this.map.createFromObjects('Object Layer', 161, 'lama', 0, true, true, this.obstacleTerrenos, Terrenos)
+
+        }
+        else if (config.LEVEL == 2) {
+
+            this.map.addTilesetImage('level 2 map')
+            this.mapLayer = this.map.createLayer('Map Layer')
+            this.mapLayer = this.map.createLayer('Background Layer')
 
 
 
+        }
+        else if (config.LEVEL == 3) {
+            this.map.addTilesetImage('level 3 tileset')
+            this.mapLayer = this.map.createLayer('Background Layer')
+            this.mapLayer = this.map.createLayer('Map Layer')
+            this.map.setCollisionBetween(0, 300, true, 'Map Layer')
 
-        this.obstaclesHeart = this.game.add.group()
-        this.obstaclesPortal = this.game.add.group()
-        this.obstaclePlataformUpDown = this.game.add.group()
-        this.obstacleInvisibleWall = this.game.add.group()
-        this.obstacleSpike = this.game.add.group()
-        this.map.createFromObjects('Object Layer', 111, 'heart', 0, true, true, this.obstaclesHeart, Heart)
-        this.map.createFromObjects('Object Layer', 112, 'jasonMask', 0, true, true, this.obstaclesHeart)
-        this.map.createFromObjects('Object Layer', 113, 'flyingPlataform', 0, true, true, this.obstaclePlataformUpDown, Plataform)
-        this.map.createFromObjects('Object Layer', 114, 'portal', 0, true, true, this.obstaclesPortal, Portal)
-        this.map.createFromObjects('Object Layer', 115, 'invisibleWall', 0, true, true, this.obstacleInvisibleWall, InvisibleWall)
-        this.map.createFromObjects('Object Layer', 116, 'spike', 0, true, true, this.obstacleSpike, Spike)
+            this.obstaclesLava = this.game.add.group()
+            this.obstaclesJasonMask = this.game.add.group()
+            this.obstaclesPlataformSide = this.game.add.group()
+            this.obstacleInvisibleWallLeft = this.game.add.group()
+            this.obstacleInvisibleWallRight = this.game.add.group()
+            this.obstaclesPortal = this.game.add.group()
+
+            this.map.createFromObjects('Object Layer', 155, 'jasonMask', 0, true, true, this.obstaclesJasonMask, JasonMask)
+            this.map.createFromObjects('Object Layer', 156, 'lava', 0, true, true, this.obstaclesLava, Lava)
+            this.map.createFromObjects('Object Layer', 157, 'sidePlataform', 0, true, true, this.obstaclesPlataformSide, PlataformSide)
+            this.map.createFromObjects('Object Layer', 159, 'invisibleWall', 0, true, true, this.obstacleInvisibleWallLeft, InvisibleWall)
+            this.map.createFromObjects('Object Layer', 160, 'invisibleWall', 0, true, true, this.obstacleInvisibleWallRight, InvisibleWall)
+            this.map.createFromObjects('Object Layer', 161, 'portal', 0, true, true, this.obstaclesPortal, Portal)
+            // this.map.createFromObjects('Object Layer', 159, 'invisibleWall', 0, true, true, this.obstacleInvisibleWallLeft, InvisibleWall)
+            // this.map.createFromObjects('Object Layer', 160, 'invisibleWall', 0, true, true, this.obstacleInvisibleWallRight, InvisibleWall)
+
+
+        }
+
+        else if (config.LEVEL == 4) {
+
+            this.map.addTilesetImage('level 4 tileset')
+            this.mapLayer = this.map.createLayer('Background Layer')
+            this.mapLayer = this.map.createLayer('Map Layer')
+            this.map.setCollisionBetween(0, 300, true, 'Map Layer')
+
+            // this.obstaclesLava = this.game.add.group()
+            // this.obstaclesJasonMask = this.game.add.group()
+            // this.obstaclesPlataformSide = this.game.add.group()
+            // this.obstacleInvisibleWallLeft = this.game.add.group()
+            // this.obstacleInvisibleWallRight = this.game.add.group()
+            // this.obstaclesPortal = this.game.add.group()
+
+            // this.map.createFromObjects('Object Layer', 155, 'jasonMask', 0, true, true, this.obstaclesJasonMask, JasonMask)
+            // this.map.createFromObjects('Object Layer', 156, 'lava', 0, true, true, this.obstaclesLava, Lava)
+            // this.map.createFromObjects('Object Layer', 157, 'sidePlataform', 0, true, true, this.obstaclesPlataformSide, PlataformSide)
+            // this.map.createFromObjects('Object Layer', 159, 'invisibleWall', 0, true, true, this.obstacleInvisibleWallLeft, InvisibleWall)
+            // this.map.createFromObjects('Object Layer', 160, 'invisibleWall', 0, true, true, this.obstacleInvisibleWallRight, InvisibleWall)
+            // this.map.createFromObjects('Object Layer', 161, 'portal', 0, true, true, this.obstaclesPortal, Portal)
+
+        }
+
         this.iniciaAnimations()
         this.mapLayer.resizeWorld()
-
-
-
-        // this.map.addTilesetImage('pillar')
-        // this.map.addTilesetImage('spike')
-
-        // this.map.objects["Flying Platform"][0] = this.game.add.sprite(100,this.game.height + 150, 'flying plataform')
-
-        // this.mapLayer = this.map.createLayer('Tile Layer Background')
-        // this.mapLayer = this.map.createLayer('Tile Layer 2')
-        // this.mapLayer_DamageSpike = this.map.createLayer('Tile Layer DamageSpike')        
-
-
-        // this.map.setCollisionBetween(0, 300, true, 'Tile Layer DamageSpike')    
-
-        // this.obstaclesSaw = this.game.add.group()
-        // this.map.createFromObjects('Object Layer DamageSaw', 215,'damage_saw', 0, true, true, this.obstaclesSaw, Saw)
-        // this.map.createFromObjects('Object Layer Hearts', ,'Coin', 0, true, true, this.obstaclesHeart, Heart)
-
-
     }
 
     toggleFullScreen() {
@@ -178,63 +246,106 @@ class GameState extends BaseState {
     }
 
     createAudios() {
-        evilLaugh1 = this.game.add.audio('evilLaugh1')
-        evilLaugh1.volume = 1.0
-        theme = this.game.add.audio('theme')
-        // theme.start = 33000
-        jasonEffect = this.game.add.audio('jasonEffect')
+        this.evilLaugh1 = this.game.add.audio('evilLaugh1')
+        this.evilLaugh1.volume = 1.0
+        this.getHeart = this.game.add.audio('getHeart')
+
+        this.jasonDeath = this.game.add.audio('jasonDeath')
+        this.theme = this.game.add.audio('theme')
+        this.jasonEffect = this.game.add.audio('jasonEffect')
     }
 
     playThemeSong() {
-        theme.loopFull(0.8)
-        // jasonEffect.loopFull(0.3)
+        this.theme.loopFull(0.8)
+
     }
 
 
 
     update() {
+
         this.backGround.tilePosition.x -= 0.5
         this.fog.tilePosition.x += 0.1
         this.fog.tilePosition.y -= 0.1
-        // this.fog.tilePosition.x += 0.1
-        // // this.flyingPlataformMove();
-
-        // colisoes com mapa
-        // this.game.physics.arcade.collide.
-        this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
-        this.game.physics.arcade.collide(this.player1, this.obstacleSpike, this.hitSpike)
-        this.game.physics.arcade.overlap(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
-        this.game.physics.arcade.overlap(this.player1, this.obstaclesPortal, this.hitPortal, null, this);
-        this.game.physics.arcade.collide(this.player1, this.obstaclePlataformUpDown, this.setAllowJumpInPlataform)
-        this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.mapLayer, this.plataformCollideGround)
-        this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.obstacleInvisibleWall, this.plataformCollideSky)
+        if (config.LEVEL == 1) {
 
 
-        // else {
-        //     jasonEffect.stop()
+            this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
+            this.game.physics.arcade.collide(this.player1, this.obstacleSpike, this.hitSpike, null, this)
+            this.game.physics.arcade.overlap(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
+            this.game.physics.arcade.overlap(this.player1, this.obstaclesJasonMask, this.hitJasonMask, null, this);
+            this.game.physics.arcade.overlap(this.player1, this.obstaclesPortal, this.hitPortal, null, this);
+            // this.game.physics.arcade.overlap(this.player1, this.obstacleTerrenos, this.inLama, null, this);
+            this.game.physics.arcade.collide(this.player1, this.obstaclePlataformUpDown, this.setAllowJumpInPlataform)
+            this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.mapLayer, this.plataformCollideGround)
+            this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.obstacleInvisibleWall, this.plataformCollideSky)
+
+        }
+        else if (config.LEVEL == 2) {
+
+
+        }
+        else if (config.LEVEL == 3) {
+
+            this.game.physics.arcade.collide(this.player1, this.obstaclesLava, this.hitLava, null, this)
+            this.game.physics.arcade.overlap(this.player1, this.obstaclesJasonMask, this.hitJasonMask, null, this);
+            this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
+            this.game.physics.arcade.overlap(this.player1, this.obstaclesPortal, this.hitPortal, null, this);
+            this.game.physics.arcade.collide(this.player1, this.obstaclesPlataformSide, this.setAllowJumpInPlataform)
+            this.game.physics.arcade.collide(this.obstaclesPlataformSide, this.obstacleInvisibleWallLeft, this.plataformCollideLeft)
+            this.game.physics.arcade.collide(this.obstaclesPlataformSide, this.obstacleInvisibleWallRight, this.plataformCollideRight)
+
+        }
+
+        else if (config.LEVEL == 4) {
+            this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // if (this.player1.health == 0) {
+        //     fromTheBegin()
         // }
-        // //colisao com espinhos
-        // this.game.physics.arcade.collide(this.player1, this.mapLayer_DamageSpike, this.hitSpikes, null, this)
-
-        // colisao com serras
-        // this.game.physics.arcade.collide(this.player1, this.obstaclesSaw, this.hitSaw, null, this)
-
-        // //colisao com coins 
-        // this.game.physics.arcade.collide(this.player1, this.obstaclesCoin, this.hitCoin, null, this)
 
         this.updateHud()
     }
 
+    inLama(sprite, tile) {
+        if (tile.key === 'lama') {
+            sprite.body.x -= tile.body.x - tile.body.prev.x;
+        }
+    }
+
     hitPortal(sprite, tile) {
+        sprite.score += 1000
         this.loadNextLevel()
 
     }
 
     loadNextLevel() {
-        // config.LEVEL++
-        if (config.LEVEL > 2) config.LEVEL = 1
+        // config.LEVEL += 2
+        config.LEVEL++
+        // if (config.LEVEL > 2) config.LEVEL = 1
 
         this.game.state.restart()
+    }
+
+    fromTheBegin() {
+        config.LEVEL = 1
+        this.state.start('Title')
     }
 
     plataformCollideGround(sprite, tile) {
@@ -248,6 +359,17 @@ class GameState extends BaseState {
         sprite.hitGround = false
     }
 
+    plataformCollideLeft(sprite, tile) {
+        sprite.hitLeft = true
+        sprite.hitRight = false
+    }
+
+
+    plataformCollideRight(sprite, tile) {
+        sprite.hitRight = true
+        sprite.hitLeft = false
+    }
+
     setAllowJump(sprite, tile) {
         sprite.jumpAllow = true
     }
@@ -256,26 +378,40 @@ class GameState extends BaseState {
         sprite.jumpAllow = true
         sprite.inPlataform = true
     }
-
     hitHeart(sprite, tile) {
-        // sprite.score += config.SCORE_COIN]
-
-        evilLaugh1.play()
+        this.player1.health++
+        this.getHeart.play()
         tile.kill()
     }
 
-
+    hitJasonMask(sprite, tile) {
+        console.log("hit")
+        sprite.score += config.SCORE_MASK
+        this.evilLaugh1.play()
+        tile.kill()
+    }
 
     hitSpike(sprite, tile) {
+        this.jasonDeath.play()
+
+        sprite.health -= 1
         sprite.jumpAllow = true
         sprite.inPlataform = true
-        // this.player1.health -= 1
-        // sprite.alpha = 0.5
-        // tile.alpha = 0
-        // força atualizaçao dos tiles no map
-        // this.mapLayer.dirty = true
-        // this.game.camera.shake(0.01, 200);
-        // this.state.restart('Game')
+        this.game.camera.shake(0.01, 200);
+        this.game.state.restart()
+
+    }
+
+
+    hitLava(sprite, tile) {
+        this.jasonDeath.play()
+
+        sprite.health -= 1
+        sprite.jumpAllow = true
+        sprite.inPlataform = true
+        this.game.camera.shake(0.01, 200);
+        this.game.state.restart()
+
     }
 
     hitSaw(player, obstacle) {
@@ -294,19 +430,34 @@ class GameState extends BaseState {
     }
 
     updateHud() {
-        this.hud.text1.text = `Vida : ${this.player1.health}x`
+        this.hud.text1.text = `Vida : ${this.player1.health}`,
+            this.hud.score.text = `Score : ${this.player1.score}`
+
     }
 
     render() {
 
         // this.obstacleInvisibleWall.forEach(function (obj) {
         //     this.game.debug.body(obj)
-        // }, this)
+        // }, this) 
 
         // this.obstaclePlataformUpDown.forEach(function (obj) {
         //     this.game.debug.body(obj)
         // }, this)
 
-        this.game.debug.body(this.player1)
+        this.obstaclesPlataformSide.forEach(function (obj) {
+            this.game.debug.body(obj)
+        }, this)
+
+        this.obstacleInvisibleWallLeft.forEach(function (obj) {
+            this.game.debug.body(obj)
+        }, this)
+
+        this.obstacleInvisibleWallRight.forEach(function (obj) {
+            this.game.debug.body(obj)
+        }, this)
+
+
+        // this.game.debug.body(this.player1)
     }
 }

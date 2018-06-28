@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="64" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="40">
- <tileset firstgid="1" name="level 1 map" tilewidth="64" tileheight="64" tilecount="110" columns="11">
-  <image source="level 1 tileset.png" trans="ff00ff" width="766" height="640"/>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="64" tileheight="64" infinite="0" nextobjectid="110">
+ <tileset firstgid="1" name="level 1 map" tilewidth="64" tileheight="64" tilecount="154" columns="11">
+  <image source="../TileSets Maps/level 1 tileset.png" trans="ff00ff" width="766" height="896"/>
  </tileset>
- <tileset firstgid="111" name="heart" tilewidth="50" tileheight="50" tilecount="1" columns="0">
+ <tileset firstgid="155" name="heart" tilewidth="50" tileheight="50" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="50" height="50" source="../../Collectable/heartL.png"/>
   </tile>
  </tileset>
- <tileset firstgid="112" name="jasonMask" tilewidth="64" tileheight="64" tilecount="1" columns="0">
+ <tileset firstgid="156" name="jasonMask" tilewidth="64" tileheight="64" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="64" height="64" source="../../Collectable/jasonMask.png"/>
   </tile>
  </tileset>
- <tileset firstgid="113" name="flying plataform" tilewidth="132" tileheight="65" tilecount="1" columns="0">
+ <tileset firstgid="157" name="flying plataform" tilewidth="132" tileheight="65" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="132" height="65" source="../../Interactable/flying plataform.png"/>
   </tile>
  </tileset>
- <layer id="1" name="Map Layer" width="100" height="15">
+ <tileset firstgid="158" name="spike" tilewidth="62" tileheight="31" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="62" height="31" source="../../Obstacles/spike.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="159" name="invisibleWallO" tilewidth="132" tileheight="28" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="132" height="28" source="../../Interactable/invisibleWallO.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="160" name="PortalO" tilewidth="139" tileheight="118" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="139" height="118" source="../../Interactable/PortalO.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="161" name="lamaO" tilewidth="128" tileheight="64" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="64" height="64" source="../../Obstacles/lamaO.png"/>
+  </tile>
+ </tileset>
+ <layer name="Map Layer" width="100" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -33,14 +57,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,5,12,12,12,12,48,103,104,0,0,0,0,0,0,0,0,0,0,0,0,0,38,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,5,60,23,23,23,23,61,12,13,50,0,0,0,0,0,0,0,0,38,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,23,25,8,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-0,0,0,0,0,0,5,60,24,24,24,24,24,23,23,30,61,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,60,24,23,8,106,106,106,4,0,0,0,0,0,0,5,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,60,
-12,12,12,12,12,12,60,24,24,24,24,24,24,24,24,23,23,23,61,14,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,13,62,0,0,0,0,0,0,0,0,5,12,60,24,24,24,61,12,12,12,12,12,12,12,12,12,12,60,23,61,12,48,106,0,0,5,12,12,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,60,25,
+0,0,0,0,0,0,0,5,60,23,23,23,23,61,12,13,48,0,0,0,0,0,0,0,0,38,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,60,25,8,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,13,13,
+0,0,0,0,0,0,5,60,24,24,24,24,24,23,23,30,61,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,60,24,23,8,0,0,0,0,4,0,0,0,0,0,5,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,60,24,24,
+12,12,12,12,12,12,60,24,24,24,24,24,24,24,24,23,23,23,61,14,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,13,62,0,0,0,0,0,0,0,0,5,12,60,24,24,24,61,12,12,12,12,12,12,12,12,12,12,60,23,61,12,48,0,0,0,5,12,12,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0,5,60,24,24,25,
 23,23,23,23,23,23,24,24,23,23,23,23,23,23,24,24,24,24,24,24,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,25,0,0,0,0,0,0,12,12,12,60,23,24,24,24,24,24,23,23,23,23,23,23,23,23,23,23,24,24,23,25,61,12,12,12,60,23,23,23,61,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,13,13,
-24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,106,106,106,106,106,106,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,23,23,23,23,24,24,24,24,24,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24
+24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,0,0,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,23,23,23,23,24,24,24,24,24,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24
 </data>
  </layer>
- <layer id="2" name="Background Layer" width="100" height="15">
+ <layer name="Background Layer" width="100" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -59,17 +83,31 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="Object Layer">
-  <object id="6" gid="111" x="1671" y="575" width="50" height="50"/>
-  <object id="7" gid="111" x="1929" y="507" width="50" height="50"/>
-  <object id="8" gid="111" x="2183" y="441" width="50" height="50"/>
-  <object id="9" gid="111" x="2439" y="377" width="50" height="50"/>
-  <object id="10" gid="111" x="2651" y="321" width="50" height="50"/>
-  <object id="11" gid="111" x="2711" y="309" width="50" height="50"/>
-  <object id="12" gid="111" x="2773" y="313" width="50" height="50"/>
-  <object id="21" gid="112" x="6331" y="578" width="76" height="68"/>
-  <object id="31" gid="113" x="1343.7" y="638.242" width="132" height="65"/>
-  <object id="38" gid="111" x="1607" y="243.667" width="50" height="50"/>
-  <object id="39" gid="111" x="1671" y="243.667" width="50" height="50"/>
+ <objectgroup name="Object Layer">
+  <object id="31" gid="157" x="1345.7" y="640.242" width="132" height="65"/>
+  <object id="40" gid="158" x="2778" y="982" width="62" height="31"/>
+  <object id="41" gid="158" x="2842" y="982" width="62" height="31"/>
+  <object id="42" gid="158" x="2908" y="984" width="62" height="31"/>
+  <object id="43" gid="158" x="2974" y="984" width="62" height="31"/>
+  <object id="44" gid="158" x="3038" y="982" width="62" height="31"/>
+  <object id="45" gid="158" x="3104" y="982" width="62" height="31"/>
+  <object id="46" gid="159" x="1342" y="256" width="132" height="28"/>
+  <object id="48" gid="158" x="4763" y="846" width="62" height="31"/>
+  <object id="49" gid="158" x="4829" y="846" width="62" height="31"/>
+  <object id="55" gid="160" x="6340" y="705" width="139" height="118"/>
+  <object id="64" gid="158" x="3803" y="781.5" width="62" height="31"/>
+  <object id="65" gid="158" x="3867" y="781.5" width="62" height="31"/>
+  <object id="66" gid="158" x="3933" y="783.5" width="62" height="31"/>
+  <object id="67" gid="158" x="3999" y="783.5" width="62" height="31"/>
+  <object id="71" gid="156" x="1629" y="565" width="64" height="64"/>
+  <object id="79" gid="155" x="6221.67" y="554.333" width="50" height="50"/>
+  <object id="82" gid="156" x="3905.33" y="490.667" width="64" height="64"/>
+  <object id="83" gid="156" x="2640" y="273.333" width="64" height="64"/>
+  <object id="84" gid="156" x="2708" y="266.667" width="64" height="64"/>
+  <object id="85" gid="156" x="2776" y="269.333" width="64" height="64"/>
+  <object id="87" gid="156" x="2142.67" y="408" width="64" height="64"/>
+  <object id="89" gid="156" x="1597.33" y="254.667" width="64" height="64"/>
+  <object id="90" gid="156" x="1656" y="252" width="64" height="64"/>
+  <object id="109" gid="160" x="240.333" y="827" width="139" height="118"/>
  </objectgroup>
 </map>

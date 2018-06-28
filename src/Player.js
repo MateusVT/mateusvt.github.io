@@ -1,10 +1,9 @@
-
-
 class Player extends Phaser.Sprite {
     constructor(game, x, y, img, tint, bullets, keys) {
         super(game, x, y, img)
         game.physics.arcade.enable(this)
         this.health = config.PLAYER_HEALTH
+        this.score = 0
         //this.body.isCircle = true
         this.scale.setTo(1.5, 1.5)
         // this.body.setSize(36, 36)
@@ -69,6 +68,7 @@ class Player extends Phaser.Sprite {
     movePerson() {
 
         if (this.keys.left.isDown || this.keys.a.isDown) {
+            // this.body.velocity.x = -config.PLAYER_VELOCITY_X-200
             this.body.velocity.x = -config.PLAYER_VELOCITY_X
             // this.body.res
             this.lastKey = 1
@@ -76,7 +76,7 @@ class Player extends Phaser.Sprite {
 
         }
         else if (this.keys.right.isDown || this.keys.d.isDown) {
-            this.body.velocity.x = +config.PLAYER_VELOCITY_X
+            this.body.velocity.x = +config.PLAYER_VELOCITY_X 
             this.lastKey = 2
             this.animations.play('walkRight');
         }
@@ -86,23 +86,24 @@ class Player extends Phaser.Sprite {
 
         else if (this.keys.w.isDown) {
             if (this.jumpAllow) {
-                if(this.inPlataform){
-                this.lastKey = this.upPressed
-                this.body.velocity.y = 0
-                this.body.velocity.y += -config.PLAYER_MAX_JUMP
-                this.animations.play('jump')
-                }else{
-                
-                this.lastKey = this.upPressed
-                this.body.velocity.y += -config.PLAYER_MAX_JUMP
-                this.animations.play('jump')
-            }}
+                if (this.inPlataform) {
+                    this.lastKey = this.upPressed
+                    this.body.velocity.y = 0
+                    this.body.velocity.y += -config.PLAYER_MAX_JUMP
+                    this.animations.play('jump')
+                } else {
+
+                    this.lastKey = this.upPressed
+                    this.body.velocity.y += -config.PLAYER_MAX_JUMP
+                    this.animations.play('jump')
+                }
+            }
 
             this.jumpAllow = false
         }
 
         else if (this.keys.space.isDown) {
-          this.animations.play('attackRight');
+            this.animations.play('attackRight');
         }
         else {
             this.body.velocity.x = 0
@@ -133,7 +134,7 @@ class Player extends Phaser.Sprite {
 
     jump() {
         if (this.jumpAllow) {
-            this.body.velocity.y += 0            
+            this.body.velocity.y += 0
             this.body.velocity.y += -config.PLAYER_MAX_JUMP
             this.animations.play('jump')
         }
