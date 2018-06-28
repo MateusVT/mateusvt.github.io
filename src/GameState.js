@@ -307,6 +307,6 @@ class GameState extends BaseState {
         //     this.game.debug.body(obj)
         // }, this)
 
-        this.game.debug.body(this.player1)
+        // this.game.debug.body(this.player1)
     }
 }
