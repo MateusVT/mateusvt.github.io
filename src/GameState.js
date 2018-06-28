@@ -445,17 +445,17 @@ class GameState extends BaseState {
         //     this.game.debug.body(obj)
         // }, this)
 
-        this.obstaclesPlataformSide.forEach(function (obj) {
-            this.game.debug.body(obj)
-        }, this)
+        // this.obstaclesPlataformSide.forEach(function (obj) {
+        //     this.game.debug.body(obj)
+        // }, this)
 
-        this.obstacleInvisibleWallLeft.forEach(function (obj) {
-            this.game.debug.body(obj)
-        }, this)
+        // this.obstacleInvisibleWallLeft.forEach(function (obj) {
+        //     this.game.debug.body(obj)
+        // }, this)
 
-        this.obstacleInvisibleWallRight.forEach(function (obj) {
-            this.game.debug.body(obj)
-        }, this)
+        // this.obstacleInvisibleWallRight.forEach(function (obj) {
+        //     this.game.debug.body(obj)
+        // }, this)
 
 
         // this.game.debug.body(this.player1)
