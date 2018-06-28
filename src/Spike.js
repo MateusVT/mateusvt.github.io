@@ -9,6 +9,6 @@ class Spike extends Phaser.Sprite {
         // this.body.isCircle = true
         this.body.allowGravity = false
         this.body.immovable = true
-
+        // this.animations.play('lava', 10, true)
     }
 } 

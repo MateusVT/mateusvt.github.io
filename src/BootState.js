@@ -34,7 +34,10 @@ class BootState extends Phaser.State {
 
 
         //Obstacles
-        this.game.load.image('spike', 'assets/Obstacles/spike.png')
+        this.game.load.image('spike', 'assets/Obstacles/spike.png', 64, 64)
+        this.game.load.spritesheet('lava', 'assets/Obstacles/lava.png', 128, 64)
+        this.game.load.spritesheet('water', 'assets/Obstacles/water.png', 128, 64)
+        this.game.load.spritesheet('poison', 'assets/Obstacles/poison.png', 128, 64)
 
 
         //Collectable

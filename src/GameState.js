@@ -87,6 +87,7 @@ class GameState extends BaseState {
             exp.animations.play('full')
             anim.onComplete.add(() => exp.kill())
         })
+
         this.obstaclesHeart.forEach(function (exp) {
             let anim = exp.animations.add('full', null, 10, true) // null -> array of frames
             exp.scale.setTo(0.5, 0.5)
@@ -94,6 +95,14 @@ class GameState extends BaseState {
             exp.animations.play('full')
             anim.onComplete.add(() => exp.kill())
         })
+
+        // this.obstacleSpike.forEach(function (exp) {
+        //     let anim = exp.animations.add('full', null, 6, true) // null -> array of frames
+        //     exp.scale.setTo(0.5, 0.5)
+        //     exp.anchor.setTo(0.5, 0.5)
+        //     exp.animations.play('full')
+        //     anim.onComplete.add(() => exp.kill())
+        // })
     }
 
     // flyingPlataformMove() {
