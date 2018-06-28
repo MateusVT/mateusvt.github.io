@@ -143,6 +143,6 @@ class Player extends Phaser.Sprite {
 
     update() {
         this.movePerson()
-        this.attack()
+        // this.attack()
     }
 }
