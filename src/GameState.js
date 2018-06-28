@@ -19,9 +19,8 @@ class GameState extends BaseState {
 
         this.createTileMap()
         this.createAudios()
-        this.playThemeSong(
+        this.playThemeSong()
 
-        )
         this.fog = this.game.add.tileSprite(0, 0, 6400, 960, 'fog3')
         this.fog.tileScale.setTo(5, 5)
         this.fog.alpha = 0.3
@@ -46,12 +45,12 @@ class GameState extends BaseState {
         this.game.add.existing(this.player1)
         this.game.camera.follow(this.player1, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
 
-        // this.hud = {
-        //     text1: this.createText(this.game.width * 1 / 9, 50, 'PLAYER 1: 20'),
-        //     score: this.createText(this.game.width - 90, 50, 'SCORE: 0')
-        // }
+        this.hud = {
+            text1: this.createText(this.game.width * 1 / 20, 40, 'PLAYER 1'),
+            score: this.createText(this.game.width - 90, 50, 'SCORE: 0')
+        }
 
-        // this.updateHud()
+        this.updateHud()
 
         let fps = new FramesPerSecond(this.game, this.game.width / 2, 50)
         this.game.add.existing(fps)
@@ -79,7 +78,6 @@ class GameState extends BaseState {
         })
     }
 
-
     iniciaAnimations() {
 
         this.obstaclesPortal.forEach(function (exp) {
@@ -106,9 +104,18 @@ class GameState extends BaseState {
 
     // }
 
+    // loadFile() {
+    //     let text = this.game.cache.getText('map1');
+    //     return text.split('\n');
+    // }
+
+
+
+
 
     createTileMap() {
-        this.map = this.game.add.tilemap('level1')
+        this.map = this.game.add.tilemap(`level${config.LEVEL}`)
+        // this.map = this.game.add.tilemap('level2')
         this.map.addTilesetImage('level 1 map')
         this.mapLayer = this.map.createLayer('Background Layer')
         this.mapLayer = this.map.createLayer('Map Layer')
@@ -188,6 +195,7 @@ class GameState extends BaseState {
         this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
         this.game.physics.arcade.collide(this.player1, this.obstacleSpike, this.hitSpike)
         this.game.physics.arcade.overlap(this.player1, this.obstaclesHeart, this.hitHeart, null, this);
+        this.game.physics.arcade.overlap(this.player1, this.obstaclesPortal, this.hitPortal, null, this);
         this.game.physics.arcade.collide(this.player1, this.obstaclePlataformUpDown, this.setAllowJumpInPlataform)
         this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.mapLayer, this.plataformCollideGround)
         this.game.physics.arcade.collide(this.obstaclePlataformUpDown, this.obstacleInvisibleWall, this.plataformCollideSky)
@@ -206,6 +214,18 @@ class GameState extends BaseState {
         // this.game.physics.arcade.collide(this.player1, this.obstaclesCoin, this.hitCoin, null, this)
 
         this.updateHud()
+    }
+
+    hitPortal(sprite, tile) {
+        this.loadNextLevel()
+
+    }
+
+    loadNextLevel() {
+        // config.LEVEL++
+        if (config.LEVEL > 2) config.LEVEL = 1
+
+        this.game.state.restart()
     }
 
     plataformCollideGround(sprite, tile) {
@@ -230,6 +250,7 @@ class GameState extends BaseState {
 
     hitHeart(sprite, tile) {
         // sprite.score += config.SCORE_COIN]
+
         evilLaugh1.play()
         tile.kill()
     }
@@ -237,6 +258,9 @@ class GameState extends BaseState {
 
 
     hitSpike(sprite, tile) {
+        sprite.jumpAllow = true
+        sprite.inPlataform = true
+        // this.player1.health -= 1
         // sprite.alpha = 0.5
         // tile.alpha = 0
         // força atualizaçao dos tiles no map
@@ -261,8 +285,7 @@ class GameState extends BaseState {
     }
 
     updateHud() {
-        // this.hud.text1.text = `PLAYER 1: ${this.player1.health}`
-        // this.hud.score.text = `SCORE: ${this.player1.score}`
+        this.hud.text1.text = `Vida : ${this.player1.health}x`
     }
 
     render() {

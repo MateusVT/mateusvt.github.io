@@ -16,6 +16,8 @@ config.PLAYER_DRAG = 80
 config.MASS = 200
 config.SCORE_COIN = 50
 
+config.LEVEL = 1
+
 class Game extends Phaser.Game {
     constructor() {
         super(config.RES_X, config.RES_Y, Phaser.CANVAS,'game-container')

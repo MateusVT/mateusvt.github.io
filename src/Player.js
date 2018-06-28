@@ -4,7 +4,7 @@ class Player extends Phaser.Sprite {
     constructor(game, x, y, img, tint, bullets, keys) {
         super(game, x, y, img)
         game.physics.arcade.enable(this)
-        // this.health = config.PLAYER_HEALTH
+        this.health = config.PLAYER_HEALTH
         //this.body.isCircle = true
         this.scale.setTo(1.5, 1.5)
         // this.body.setSize(36, 36)
@@ -88,7 +88,7 @@ class Player extends Phaser.Sprite {
             if (this.jumpAllow) {
                 if(this.inPlataform){
                 this.lastKey = this.upPressed
-                this.body.velocity.y += 0
+                this.body.velocity.y = 0
                 this.body.velocity.y += -config.PLAYER_MAX_JUMP
                 this.animations.play('jump')
                 }else{
