@@ -117,7 +117,6 @@ class GameState extends BaseState {
                 anim.onComplete.add(() => exp.kill())
             })
         } catch (error) {
-            console.log("erro" + error)
 
         }
         try {
@@ -177,13 +176,34 @@ class GameState extends BaseState {
         }
         else if (config.LEVEL == 2) {
 
-            this.map.addTilesetImage('level 2 map')
+            this.map.addTilesetImage('level 2 tileset')
             this.mapLayer = this.map.createLayer('Map Layer')
             this.mapLayer = this.map.createLayer('Background Layer')
+            this.map.setCollisionBetween(0, 300, true, 'Map Layer')
+            
+            this.obstaclePoison = this.game.add.group()
+           this.obstacleSpike = this.game.add.group()
+            this.obstaclesHeart = this.game.add.group()
+            this.obstaclesJasonMask = this.game.add.group()
+            this.obstaclesPortal = this.game.add.group()
+            this.obstaclesPortal = this.game.add.group()
+            this.obstaclesPlataformSide = this.game.add.group()
+            this.obstaclePlataformUpDown = this.game.add.group()
+            this.obstacleInvisibleWall = this.game.add.group()
+            
 
 
+          this.map.createFromObjects('Object Layer', 162, 'poison', 0, true, true, this.obstaclePoison, Veneno)
+          this.map.createFromObjects('Object Layer', 157, 'spike', 0, true, true, this.obstacleSpike, Spike)
+          this.map.createFromObjects('Object Layer', 156, 'heart', 0, true, true, this.obstaclesHeart, Heart)
+          this.map.createFromObjects('Object Layer', 155, 'jasonMask', 0, true, true, this.obstaclesJasonMask, JasonMask)
+          this.map.createFromObjects('Object Layer', 160, 'sidePlataform', 0, true, true, this.obstaclesPlataformSide, PlataformSide)
+          this.map.createFromObjects('Object Layer', 158, 'flyingPlataform', 0, true, true, this.obstaclePlataformUpDown, Plataform)
+          this.map.createFromObjects('Object Layer', 159, 'portal', 0, true, true, this.obstaclesPortal, Portal)
+          this.map.createFromObjects('Object Layer', 161, 'invisibleWall', 0, true, true, this.obstacleInvisibleWall, InvisibleWall)
+            
 
-        }
+             }
         else if (config.LEVEL == 3) {
             this.map.addTilesetImage('level 3 tileset')
             this.mapLayer = this.map.createLayer('Background Layer')
@@ -282,13 +302,14 @@ class GameState extends BaseState {
 
         }
         else if (config.LEVEL == 2) {
-
+        this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
 
         }
         else if (config.LEVEL == 3) {
 
             this.game.physics.arcade.collide(this.player1, this.obstaclesLava, this.hitLava, null, this)
             this.game.physics.arcade.overlap(this.player1, this.obstaclesJasonMask, this.hitJasonMask, null, this);
+            
             this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
             this.game.physics.arcade.overlap(this.player1, this.obstaclesPortal, this.hitPortal, null, this);
             this.game.physics.arcade.collide(this.player1, this.obstaclesPlataformSide, this.setAllowJumpInPlataform)
@@ -299,22 +320,7 @@ class GameState extends BaseState {
 
         else if (config.LEVEL == 4) {
             this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // if (this.player1.health == 0) {
         //     fromTheBegin()
@@ -324,7 +330,7 @@ class GameState extends BaseState {
     }
 
     inLama(sprite, tile) {
-        if (tile.key === 'lama') {
+        if (tile.key == 'lama') {
             sprite.body.x -= tile.body.x - tile.body.prev.x;
         }
     }
