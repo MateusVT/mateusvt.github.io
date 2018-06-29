@@ -177,9 +177,9 @@ class GameState extends BaseState {
         else if (config.LEVEL == 2) {
 
             this.map.addTilesetImage('level 2 tileset')
-            this.mapLayer = this.map.createLayer('Map Layer')
             this.mapLayer = this.map.createLayer('Background Layer')
-            this.map.setCollisionBetween(0, 300, true, 'Map Layer')
+            this.mapLayer = this.map.createLayer('Map Layer')
+            this.map.setCollisionBetween(1, 300, true, 'Map Layer')
             
             this.obstaclePoison = this.game.add.group()
            this.obstacleSpike = this.game.add.group()
@@ -303,6 +303,7 @@ class GameState extends BaseState {
         }
         else if (config.LEVEL == 2) {
         this.game.physics.arcade.collide(this.player1, this.mapLayer, this.setAllowJump)
+        this.game.physics.arcade.overlap(this.player1, this.obstaclesPortal, this.hitPortal, null, this);
 
         }
         else if (config.LEVEL == 3) {
