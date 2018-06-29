@@ -102,9 +102,9 @@ class Player extends Phaser.Sprite {
             this.jumpAllow = false
         }
 
-        else if (this.keys.space.isDown) {
-            this.animations.play('attackRight');
-        }
+        // else if (this.keys.space.isDown) {
+        //     this.animations.play('attackRight');
+        // }
         else {
             this.body.velocity.x = 0
             // if (this.lastKey = 1) {
