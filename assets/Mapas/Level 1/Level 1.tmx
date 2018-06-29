@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="64" tileheight="64" infinite="0" nextobjectid="110">
+<map version="1.0" tiledversion="2018.06.27" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="64" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="110">
  <tileset firstgid="1" name="level 1 map" tilewidth="64" tileheight="64" tilecount="154" columns="11">
-  <image source="../TileSets Maps/level 1 tileset.png" trans="ff00ff" width="766" height="896"/>
+  <image source="level 1 tileset.png" trans="ff00ff" width="766" height="896"/>
  </tileset>
  <tileset firstgid="155" name="heart" tilewidth="50" tileheight="50" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
@@ -45,7 +45,7 @@
    <image width="64" height="64" source="../../Obstacles/lamaO.png"/>
   </tile>
  </tileset>
- <layer name="Map Layer" width="100" height="15">
+ <layer id="1" name="Map Layer" width="100" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -64,7 +64,7 @@
 24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,0,0,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,23,23,23,23,24,24,24,24,24,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24
 </data>
  </layer>
- <layer name="Background Layer" width="100" height="15">
+ <layer id="2" name="Background Layer" width="100" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -83,7 +83,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="Object Layer">
+ <objectgroup id="3" name="Object Layer">
   <object id="31" gid="157" x="1345.7" y="640.242" width="132" height="65"/>
   <object id="40" gid="158" x="2778" y="982" width="62" height="31"/>
   <object id="41" gid="158" x="2842" y="982" width="62" height="31"/>
@@ -108,6 +108,5 @@
   <object id="87" gid="156" x="2142.67" y="408" width="64" height="64"/>
   <object id="89" gid="156" x="1597.33" y="254.667" width="64" height="64"/>
   <object id="90" gid="156" x="1656" y="252" width="64" height="64"/>
-  <object id="109" gid="160" x="240.333" y="827" width="139" height="118"/>
  </objectgroup>
 </map>
