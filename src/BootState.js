@@ -5,8 +5,11 @@ class BootState extends Phaser.State {
     preload() {
 
         //Title
-        this.game.load.image('titleBackGround', 'assets/Title/Ttile Background.png', 800, 480)
+        this.game.load.image('titleBackGround', 'assets/Title/Title Background.png', 800, 480)
         // this.game.load.image('button_action', 'assets/Title/Hero Title.png', 300, 96)
+
+        //GameOver
+        this.game.load.image('gameOverBack', 'assets/Mapas/game over.png', 800, 800)
 
         //Virtual Pad
         this.game.load.spritesheet('button_action', 'assets/Control/button_action.png', 50, 50)

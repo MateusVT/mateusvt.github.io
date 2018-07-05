@@ -23,6 +23,7 @@ class Game extends Phaser.Game {
         super(config.RES_X, config.RES_Y, Phaser.CANVAS, 'game-container')
 
         this.state.add('Boot', BootState, false)
+        this.state.add('GameOver', GameOverState, false)
         this.state.add('Title', TitleState, false)
         this.state.add('GameState', GameState, false)
         this.state.start('Boot')
