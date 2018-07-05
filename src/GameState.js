@@ -373,7 +373,7 @@ class GameState extends BaseState {
             this.game.physics.arcade.collide(this.obstaclesPlataformUpDown, this.mapLayer, this.plataformCollideGround)
             this.game.physics.arcade.collide(this.obstaclesPlataformUpDown, this.obstaclesInvisibleWall, this.plataformCollideSky)
             this.game.physics.arcade.collide(this.obstaclesGhost, this.obstaclesInvisibleWall, this.ghostCollide, null, this)
-            this.game.physics.arcade.collide(this.player1, this.obstaclesGhost, this.hitGhost)
+            this.game.physics.arcade.overlap(this.player1, this.obstaclesGhost, this.hitGhost)
             // this.game.physics.arcade.overlap(this.player1, this.obstacleTerrenos, this.inLama, null, this);
 
         }
@@ -390,7 +390,7 @@ class GameState extends BaseState {
             this.game.physics.arcade.collide(this.obstaclesPlataformUpDown, this.obstaclesInvisibleWall, this.plataformCollideSky)
             this.game.physics.arcade.collide(this.player1, this.obstaclesPlataformSide, this.setAllowJumpInPlataform)
             this.game.physics.arcade.collide(this.obstaclesPlataformSide, this.obstaclesInvisibleWall, this.plataformCollide)
-            this.game.physics.arcade.collide(this.player1, this.obstaclesGhost, this.hitGhost)
+            this.game.physics.arcade.overlap(this.player1, this.obstaclesGhost, this.hitGhost)
             this.game.physics.arcade.collide(this.obstaclesGhost, this.obstaclesInvisibleWall, this.ghostCollide, null, this)
           
 
@@ -405,7 +405,7 @@ class GameState extends BaseState {
             this.game.physics.arcade.collide(this.player1, this.obstaclesPlataformSide, this.setAllowJumpInPlataform)
             this.game.physics.arcade.collide(this.player1, this.obstaclesGhost, this.hitGhost)
             this.game.physics.arcade.collide(this.obstaclesPlataformSide, this.obstaclesInvisibleWall, this.plataformCollide)
-            this.game.physics.arcade.collide(this.obstaclesGhost, this.obstaclesInvisibleWall, this.ghostCollide, null, this)
+            this.game.physics.arcade.overlap(this.obstaclesGhost, this.obstaclesInvisibleWall, this.ghostCollide, null, this)
 
         }
 
@@ -422,7 +422,7 @@ class GameState extends BaseState {
             this.game.physics.arcade.collide(this.obstaclesPlataformUpDown, this.obstaclesInvisibleWall, this.plataformCollideSky)
             this.game.physics.arcade.collide(this.player1, this.obstaclesPlataformSide, this.setAllowJumpInPlataform)
             this.game.physics.arcade.collide(this.obstaclesPlataformSide, this.obstaclesInvisibleWall, this.plataformCollide)
-            this.game.physics.arcade.collide(this.obstaclesGhost, this.obstaclesInvisibleWall, this.ghostCollide, null, this)
+            this.game.physics.arcade.overlap(this.obstaclesGhost, this.obstaclesInvisibleWall, this.ghostCollide, null, this)
             this.game.physics.arcade.collide(this.player1, this.obstaclesGhost, this.hitGhost)
         }
 
