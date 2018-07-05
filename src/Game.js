@@ -22,7 +22,7 @@ config.SCORE_MASK = 50
 config.ATTACK_DAMAGE = 1
 
 config.PLAYER_SCORE = 0
-config.LEVEL = 1
+config.LEVEL = 4
 
 class Game extends Phaser.Game {
     constructor() {
