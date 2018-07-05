@@ -519,7 +519,7 @@ class GameState extends BaseState {
     }
     hitHeart(sprite, tile) {
         this.player1.health++
-        this.evilLaugh1.play()
+        this.getHeart.play()
         tile.kill()
     }
 
