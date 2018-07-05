@@ -437,6 +437,7 @@ class GameState extends BaseState {
 
     hitPortal(sprite, tile) {
         if (config.LEVEL == 4) {
+            onfig.LEVEL = 1
             this.state.start('WinState')
 
         } else {
