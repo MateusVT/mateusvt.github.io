@@ -3,7 +3,8 @@ class Player extends Phaser.Sprite {
         super(game, x, y, img)
         game.physics.arcade.enable(this)
         this.health = config.PLAYER_HEALTH
-        this.score = 0
+        this.attackDamage = config.ATTACK_DAMAGE
+        this.score = config.PLAYER_SCORE
         //this.body.isCircle = true
         this.scale.setTo(1.5, 1.5)
         // this.body.setSize(36, 36)
@@ -12,6 +13,7 @@ class Player extends Phaser.Sprite {
         // this.body.maxVelocity.y = config.PLAYER_MAX_VELOCITY_JUMP
         // this.body.position.x = 0
         // this.body.position.y = 0
+        this.body.gravity.y = 700
         this.body.collideWorldBounds = true
         this.body.allowRotation = false
 
@@ -30,18 +32,24 @@ class Player extends Phaser.Sprite {
         this.inPlataform = false
         this.lastKey = null
 
+        this.isOnPoison = false
 
-        this.animations.add('walkRight', ["9", "19", "20", "10", "11", "17", "12", "21"], 11);
-        this.animations.add('walkLeft', ["22", "13", "18", "14", "15", "23", "24", "16"], 11);
+        this.animations.add('walkRight', ["9", "19", "20", "10", "11", "17", "12", "21"], 15);
+        this.animations.add('walkLeft', ["22", "13", "18", "14", "15", "23", "24", "16"], 15);
         this.animations.add('attackRight', ["43", "39", "41", "47", "45"], 11);
         // this.animations.add('attackLeft', ["46", "48", "42", "40", "44"], 11);
         this.animations.add('attackLeft', ["44", "40", "42", "48", "46"], 11);
         // this.animations.add('stayRight', ["4", "3",], 5);
         // this.animations.add('stayRight', ["4", "3",], 5);
         this.animations.add('stay', ["1"], 5);
+        this.animations.add('falling', ["29", "31"], 5);
         this.animations.add('downRight', ["34", "37"], 5);
         this.animations.add('downLeft', ["35", "38"], 5);
-        this.animations.add('jump', ["33", "27", "25", "29", "31", "37", "34", "63", "61"], 5);
+        this.animations.add('jump', ["33", "27", "25", "29", "31", "37", "34", "63", "61"], 8);
+
+
+        this.jumpEffect = this.game.add.audio('jumpEffect')
+        this.jumpEffect.volume = 1.0
 
 
         this.keys = {
@@ -61,6 +69,15 @@ class Player extends Phaser.Sprite {
         this.jumpAllow = true
         // this.bullets = bullets
 
+
+        this.emitter = game.add.emitter(0, 0, 80);
+        this.emitter.makeParticles(['fog2']);
+        this.emitter.setXSpeed(0, 0)
+        this.emitter.setYSpeed(10, 0)
+        this.emitter.setAlpha(1, 0, 1000);
+        this.emitter.setScale(0.9, 0, 0.9, 0, 1000);
+        this.emitter.start(false, 1000, 50);
+
     }
 
 
@@ -69,14 +86,24 @@ class Player extends Phaser.Sprite {
 
         if (this.keys.left.isDown || this.keys.a.isDown) {
             // this.body.velocity.x = -config.PLAYER_VELOCITY_X-200
-            this.body.velocity.x = -config.PLAYER_VELOCITY_X
+            if (this.isOnPoison) {
+                this.body.velocity.x = -config.PLAYER_VELOCITY_X - 150
+            }
+            else {
+                this.body.velocity.x = -config.PLAYER_VELOCITY_X
+            }
             // this.body.res
             this.lastKey = 1
             this.animations.play('walkLeft');
 
         }
         else if (this.keys.right.isDown || this.keys.d.isDown) {
-            this.body.velocity.x = +config.PLAYER_VELOCITY_X 
+            if (this.isOnPoison) {
+                this.body.velocity.x = +config.PLAYER_VELOCITY_X - 150
+            }
+            else {
+                this.body.velocity.x = +config.PLAYER_VELOCITY_X
+            }
             this.lastKey = 2
             this.animations.play('walkRight');
         }
@@ -90,11 +117,13 @@ class Player extends Phaser.Sprite {
                     this.lastKey = this.upPressed
                     this.body.velocity.y = 0
                     this.body.velocity.y += -config.PLAYER_MAX_JUMP
+                    this.jumpEffect.play()
                     this.animations.play('jump')
                 } else {
 
                     this.lastKey = this.upPressed
                     this.body.velocity.y += -config.PLAYER_MAX_JUMP
+                    this.jumpEffect.play()
                     this.animations.play('jump')
                 }
             }
@@ -131,11 +160,18 @@ class Player extends Phaser.Sprite {
 
     }
 
+    falling() {
+
+        if (!this.jumpAllow) {
+            this.animations.play('falling')
+        }
+    }
 
     jump() {
         if (this.jumpAllow) {
             this.body.velocity.y += 0
             this.body.velocity.y += -config.PLAYER_MAX_JUMP
+            this.jumpEffect.play()
             this.animations.play('jump')
         }
         this.jumpAllow = false
@@ -143,6 +179,15 @@ class Player extends Phaser.Sprite {
 
     update() {
         this.movePerson()
+        this.falling()
+        if (this.isOnPoison) {
+            this.emitter.visible = true
+            this.emitter.emitX = this.x;
+            this.emitter.emitY = this.y;
+        } else {
+
+            this.emitter.visible = false
+        }
         // this.attack()
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="64" tileheight="64" infinite="0" nextobjectid="28">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="64" tileheight="64" infinite="0" nextobjectid="45">
  <tileset firstgid="1" name="level 3 tileset" tilewidth="64" tileheight="64" tilecount="154" columns="11">
   <image source="level 3 tileset.png" trans="ff00ff" width="766" height="896"/>
  </tileset>
@@ -33,16 +33,16 @@
    <image width="132" height="28" source="../../Interactable/invisibleWallO.png"/>
   </tile>
  </tileset>
- <tileset firstgid="160" name="invisibleWallRight" tilewidth="132" tileheight="28" tilecount="1" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="0">
-   <image width="132" height="28" source="../../Interactable/invisibleWallRight.png"/>
-  </tile>
- </tileset>
- <tileset firstgid="161" name="PortalO" tilewidth="139" tileheight="118" tilecount="1" columns="0">
+ <tileset firstgid="160" name="PortalO" tilewidth="139" tileheight="118" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="139" height="118" source="../../Interactable/PortalO.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="161" name="ghostO" tilewidth="64" tileheight="64" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="64" height="64" source="../../Enemies/ghostO.png"/>
   </tile>
  </tileset>
  <objectgroup name="Object Layer">
@@ -54,10 +54,15 @@
   <object id="13" gid="155" x="989.212" y="308.545" width="64" height="64"/>
   <object id="14" gid="155" x="1083.15" y="305.515" width="64" height="64"/>
   <object id="15" gid="155" x="1183.15" y="308.545" width="64" height="64"/>
-  <object id="16" gid="157" x="1602" y="386" width="132" height="65"/>
-  <object id="17" gid="159" x="1410" y="346" width="132" height="28"/>
-  <object id="20" gid="160" x="2688" y="346" width="132" height="28"/>
-  <object id="26" gid="161" x="6205" y="689" width="139" height="118"/>
+  <object id="26" gid="160" x="4225.24" y="824.03" width="139" height="118"/>
+  <object id="36" gid="161" x="2328.36" y="767.03" width="64" height="64"/>
+  <object id="37" gid="161" x="2812.36" y="768.364" width="64" height="64"/>
+  <object id="38" gid="161" x="3315.03" y="769.697" width="64" height="64"/>
+  <object id="39" gid="161" x="3892.36" y="760.364" width="64" height="64"/>
+  <object id="40" gid="161" x="2029.7" y="761.697" width="64" height="64"/>
+  <object id="41" gid="159" x="1793.03" y="737.03" width="132" height="28"/>
+  <object id="42" gid="159" x="2602.36" y="735.697" width="132" height="28"/>
+  <object id="43" gid="159" x="3997.03" y="731.697" width="132" height="28"/>
  </objectgroup>
  <layer name="Background Layer" width="100" height="15">
   <data encoding="csv">

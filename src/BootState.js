@@ -9,15 +9,24 @@ class BootState extends Phaser.State {
         // this.game.load.image('button_action', 'assets/Title/Hero Title.png', 300, 96)
 
         //GameOver
-        this.game.load.image('gameOverBack', 'assets/Mapas/game over.png', 800, 800)
+        this.game.load.image('gameOverBack', 'assets/Title/gameOver.jpg', 800, 480)
+
+        //Win
+        this.game.load.image('youWinBack', 'assets/Title/youWin.png', 800, 480)
 
         //Virtual Pad
         this.game.load.spritesheet('button_action', 'assets/Control/button_action.png', 50, 50)
         this.game.load.image('button_move', 'assets/Control/button_move.png', 105, 50)
         // this.game.load.spritesheet('button_move', 'assets/Control/button_move.png', 105, 50)
         this.game.load.spritesheet('button_attack', 'assets/Control/button_attack.png', 50, 50)
-
-
+        
+        
+        //Enemies
+        this.game.load.spritesheet('ghost1', 'assets/Enemies/ghost1.png', 128, 128)
+        this.game.load.spritesheet('ghost2', 'assets/Enemies/ghost2.png', 128, 128)
+        this.game.load.spritesheet('ghost3', 'assets/Enemies/ghost3.png', 128, 128)
+        this.game.load.spritesheet('ghost4', 'assets/Enemies/ghost4.png', 128, 128)
+        
         // Effects
         this.game.load.image('fog1', 'assets/Effects/fog1.png')
         this.game.load.image('fog2', 'assets/Effects/fog2.png')
@@ -28,6 +37,8 @@ class BootState extends Phaser.State {
 
         //Ornaments
         this.game.load.image('skull', 'assets/Ornaments/dies.png')
+        // this.game.load.image('pillar2', 'assets/Ornaments/pillar2.png')
+        // this.game.load.image('tree2', 'assets/Ornaments/tree2.png')
 
 
         // Caracter        
@@ -35,6 +46,9 @@ class BootState extends Phaser.State {
 
         //Interactable
         this.game.load.image('flyingPlataform', 'assets/Interactable/flying plataform.png')
+        this.game.load.image('flyingPlataformR', 'assets/Interactable/flying plataformR.png')
+        this.game.load.image('flyingPlataformG', 'assets/Interactable/flying plataformG.png')
+        this.game.load.image('flyingPlataformB', 'assets/Interactable/flying plataformB.png')
         this.game.load.image('sidePlataform', 'assets/Interactable/side plataform.png')
         this.game.load.image('invisibleWall', 'assets/Interactable/invisibleWall.png')
         this.game.load.spritesheet('portal', 'assets/Interactable/portal.png', 148, 120)
@@ -51,6 +65,9 @@ class BootState extends Phaser.State {
         //Collectable
         this.game.load.spritesheet('heart', 'assets/Collectable/heart.png', 50, 50)
         this.game.load.spritesheet('jasonMask', 'assets/Collectable/jasonMask.png', 64, 64)
+        this.game.load.spritesheet('knife', 'assets/Collectable/knife.png', 64, 64)
+        this.game.load.spritesheet('jumpBonus', 'assets/Collectable/jumpBonus.png', 64, 64)
+        this.game.load.spritesheet('devilPact', 'assets/Collectable/devilPact.png', 64, 64)
 
         //Sound Effects 
         this.game.load.audio('theme', 'assets/Sound Effects/Theme.mp3')
@@ -58,6 +75,8 @@ class BootState extends Phaser.State {
         this.game.load.audio('jasonEffect', 'assets/Sound Effects/Jason Effect.mp3')
         this.game.load.audio('jasonDeath', 'assets/Sound Effects/death.wav')
         this.game.load.audio('getHeart', 'assets/Sound Effects/getHeart.mp3')
+        this.game.load.audio('gameOverEffect', 'assets/Sound Effects/gameOver.mp3')
+        this.game.load.audio('jumpEffect', 'assets/Sound Effects/jump.wav')
 
         // Levels
         //Level 1

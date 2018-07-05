@@ -7,21 +7,29 @@ class PlataformSide extends Phaser.Sprite {
         game.physics.arcade.enable(this)
         this.hitLeft = false
         this.hitRight = false
+        this.hitWall = 1
+
         this.body.allowGravity = false
         this.body.immovable = true
         this.body.collideWorldBounds = true;
         // this.body.friction = 10
-        this.body.acceleration.x = -100
+        this.body.acceleration.x = -200
 
 
     }
 
     moveSide() {
 
-        if (this.hitLeft) {
-            this.body.velocity.x = -100
-        } else if (this.Right) {
-            this.body.velocity.x = +100
+        // if (this.hitLeft) {
+        //     this.body.velocity.x = -100
+        // } else if (this.Right) {
+        //     this.body.velocity.x = +100
+        // }
+
+        if (this.hitWall==1) {
+            this.body.velocity.x = -200
+        } else if (this.hitWall==2) {
+            this.body.velocity.x = +200
         }
     }
 

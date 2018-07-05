@@ -37,9 +37,10 @@ class TitleState extends BaseState {
     startGame() {
         // if (this.input.pointer1.isDown) {
 
-        //     this.state.start('Game')
+            // this.state.start('Game')
+            this.state.start('GameState')
+            // this.state.start('GameOver')
         // }
-        this.state.start('GameState')
     }
 
     update() {
